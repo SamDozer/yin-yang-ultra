@@ -276,7 +276,8 @@ function drawBody(ctx, f, t, model, reduced, width, height) {
   }
 
   // 4. حالة التماسك والدوران قبل الانفجار
-  const rBase = radiusOf(f);
+  // تنفس بطيء (نحو 12 ثانية للدورة الواحدة)
+  const rBase = radiusOf(f) * (reduced ? 1 : 1 + 0.015 * Math.sin((t * Math.PI) / 6));
   const haloGrad = ctx.createRadialGradient(0, 0, rBase * 0.8, 0, 0, rBase * 1.7);
   haloGrad.addColorStop(0, 'rgba(255, 255, 255, 0.15)');
   haloGrad.addColorStop(0.4, strain > 0.5 ? 'rgba(166, 61, 47, 0.28)' : 'rgba(184, 151, 90, 0.18)');
@@ -324,9 +325,11 @@ function drawBody(ctx, f, t, model, reduced, width, height) {
 
   ctx.restore(); // إنهاء الـ clip الدائري
 
+  // البذرتان: تكبر كل بذرة كلما غلب نقيضها (في كل طرف بذرة الآخر)
+  const lean = clamp((f.yin - f.yang) / Math.max(0.1, f.total), -1, 1);
   const eyeR = r * 0.115;
-  glowDisk(ctx, shift, -r * 0.5, eyeR, 'yang', 1, 1.8);
-  glowDisk(ctx, shift, r * 0.5, eyeR, 'yin', 1, 1.8);
+  glowDisk(ctx, shift, -r * 0.5, eyeR * (1 + 0.7 * Math.max(0, lean)), 'yang', 1, 1.8);
+  glowDisk(ctx, shift, r * 0.5, eyeR * (1 + 0.7 * Math.max(0, -lean)), 'yin', 1, 1.8);
 
   ctx.restore();
 
@@ -337,6 +340,56 @@ function drawBody(ctx, f, t, model, reduced, width, height) {
   ctx.stroke();
 
   ctx.restore();
+}
+
+// حلقة الحدود الشمسية الأربعة والعشرون: كل ثانية من الدورة الكونية حدٌّ واحد
+function drawSolarRing(ctx, time) {
+  const active = Math.floor(time) % 24;
+  for (let i = 0; i < 24; i++) {
+    const a = -Math.PI / 2 + (i / 24) * TAU;
+    const major = i % 6 === 0;
+    ctx.save();
+    ctx.strokeStyle = i === active ? 'rgba(184, 151, 90, 0.95)' : 'rgba(236, 230, 216, 0.22)';
+    ctx.lineWidth = major ? 1.6 : 1;
+    ctx.beginPath();
+    ctx.moveTo(Math.cos(a) * 166, Math.sin(a) * 166);
+    ctx.lineTo(Math.cos(a) * (major ? 177 : 172), Math.sin(a) * (major ? 177 : 172));
+    ctx.stroke();
+    ctx.restore();
+  }
+}
+
+// الكوا: ستة خطوط تتبدل مع اتزان الين واليانغ (صاعدة من الأسفل عند نمو اليانغ، وهابطة من الأعلى عند تراجعه)
+let hexLastShare = 0.5;
+let hexWaxing = true;
+function drawHexagram(ctx, f) {
+  const total = f.yin + f.yang;
+  const share = total > 0.1 ? f.yang / total : 0.5;
+  if (Math.abs(share - hexLastShare) > 0.0005) {
+    hexWaxing = share > hexLastShare;
+    hexLastShare = share;
+  }
+  const solid = Math.max(0, Math.min(6, Math.round(share * 6)));
+  for (let i = 0; i < 6; i++) {
+    const isSolid = hexWaxing ? i < solid : i >= 6 - solid;
+    const y = 146 - i * 7;
+    ctx.save();
+    ctx.strokeStyle = 'rgba(184, 151, 90, 0.75)';
+    ctx.lineWidth = 2;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    if (isSolid) {
+      ctx.moveTo(-16, y);
+      ctx.lineTo(16, y);
+    } else {
+      ctx.moveTo(-16, y);
+      ctx.lineTo(-4, y);
+      ctx.moveTo(4, y);
+      ctx.lineTo(16, y);
+    }
+    ctx.stroke();
+    ctx.restore();
+  }
 }
 
 export function drawMouseInteraction(ctx, mouse) {
@@ -602,6 +655,17 @@ export function renderScene(ctx, time, modelOrFrame, { width = 900, height = 700
 
     // رسم الجسد المركزي
     drawBody(ctx, f, time, null, reduced, width, height);
+    drawHexagram(ctx, f);
+    if (f.reversal > 0) {
+      const pulse = Math.sin(Math.PI * f.reversal);
+      ctx.save();
+      ctx.strokeStyle = `rgba(184, 151, 90, ${0.55 * pulse})`;
+      ctx.lineWidth = 1.4;
+      ctx.beginPath();
+      ctx.arc(0, 0, rBase * (1.1 + 0.15 * pulse), 0, TAU);
+      ctx.stroke();
+      ctx.restore();
+    }
 
     // 3. مسارات تدفق الطاقة الانسيابية (Energy flow streamlines - 10 خطوط)
     // قنوات طاقة تربط قطبي الين واليانج، متناغمة بانسيابية عند الاتزان، وتلتوي وتضطرب مع الإجهاد
@@ -702,6 +766,7 @@ export function renderScene(ctx, time, modelOrFrame, { width = 900, height = 700
   // نمط الدورة الكونية الأبدية
   const outsideEnergy = time >= EXPLODE_TIME ? 24 : 0;
   drawCosmicBackdrop(ctx, time, outsideEnergy);
+  drawSolarRing(ctx, time);
 
   // 1. رسم جزيئات الدورة الكونية اللانهائية المستمرة (88 جزيء يتدفق بانسيابية تامة)
   for (let i = 0; i < 88; i++) {
@@ -720,6 +785,7 @@ export function renderScene(ctx, time, modelOrFrame, { width = 900, height = 700
     // 3. رسم مرحلة الجسد المركزي والدوران ثم الانفصال والتفكك
     const f = modelOrFrame.sample(time - FORMATION);
     drawBody(ctx, f, time, modelOrFrame, reduced, width, height);
+    drawHexagram(ctx, f);
   }
 
   // 4. رسم البذرتين الجديدتين أثناء ظهورهما بسلاسة في مرحلة الاستعداد للتجمع (19.5s - 24.0s)

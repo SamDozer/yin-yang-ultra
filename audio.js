@@ -155,7 +155,8 @@ class CosmicAudioEngine {
       const harmony = 1.0 - strain;
       const droneFreq = 55 + harmony * 22; // أعلى عند الاتزان
       this.droneOsc1.frequency.setTargetAtTime(droneFreq, now, 0.15);
-      this.droneOsc2.frequency.setTargetAtTime(droneFreq * 1.005 + strain * 2, now, 0.15);
+      // التوازن خامسة تامة (3:2)؛ والاختلال يُبعد النغمة قليلاً فيتولد تنافر وارتجاج
+      this.droneOsc2.frequency.setTargetAtTime(droneFreq * 1.5 * (1 + strain * 0.026), now, 0.15);
 
       this.droneGain.gain.setTargetAtTime(0.12 + harmony * 0.12 + strain * 0.08, now, 0.1);
       this.droneFilter.frequency.setTargetAtTime(120 + harmony * 200 + strain * 180, now, 0.1);
