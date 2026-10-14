@@ -1,0 +1,14 @@
+# OS / Editor junk
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+.vscode/
+.idea/
+__pycache__/
+*.pyc
+
+# Test & scratch outputs
+screenshot_*.png
+test_*.py
+verify_*.py

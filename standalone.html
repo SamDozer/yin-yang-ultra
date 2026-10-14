@@ -1,0 +1,3666 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#05070f">
+  <meta name="description" content="تجربة كونية بصرية وتفاعلية فائقة لتكوّن الين واليانج وحفظ الطاقة والتوازن في الوجود.">
+  <title>الوجود — التجربة الكونية الفائقة للين واليانج</title>
+  <style>
+/* style.css - تصميم الواجهة الفضائية الفائقة (Cosmic Cyber-Zen HUD) */
+:root {
+  color-scheme: dark;
+  --bg-space: #05070f;
+  --bg-card: rgba(13, 17, 30, 0.75);
+  --bg-card-hover: rgba(22, 29, 48, 0.85);
+  --border-glass: rgba(130, 160, 220, 0.16);
+  --border-active: rgba(120, 180, 255, 0.45);
+  --text-main: #f0f4fc;
+  --text-muted: #8b9bb4;
+  --text-dim: #5c6a82;
+  --cyan: #4cc9f0;
+  --violet: #a370f7;
+  --gold: #ffbe0b;
+  --crimson: #ff3366;
+  --green: #06d6a0;
+  --radius-lg: 20px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-space);
+  background-image: 
+    radial-gradient(circle at 15% 20%, rgba(90, 40, 160, 0.15), transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(20, 70, 140, 0.15), transparent 45%);
+  color: var(--text-main);
+  font-family: "Segoe UI", "Cairo", Tahoma, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  direction: rtl;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* Header */
+.header {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 40px;
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.brand-mark {
+  font-size: 38px;
+  line-height: 1;
+  filter: drop-shadow(0 0 12px rgba(180, 140, 255, 0.6));
+  animation: subtleSpin 45s linear infinite;
+  display: inline-block;
+}
+
+@keyframes subtleSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.brand-text h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #ffffff 40%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-text small {
+  display: block;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Cycle Counter Badge */
+.cycle-badge {
+  background: rgba(163, 112, 247, 0.12);
+  border: 1px solid var(--border-glass);
+  color: var(--violet);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 11.5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 0 12px rgba(163, 112, 247, 0.2);
+  transition: all 0.3s ease;
+}
+
+.cycle-badge b {
+  color: #fff;
+  font-family: monospace;
+  font-size: 12px;
+}
+
+.cycle-badge.pulsing {
+  border-color: var(--cyan);
+  box-shadow: 0 0 18px var(--cyan);
+}
+
+/* Sound Button */
+.sound-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-glass);
+  color: var(--text-main);
+  padding: 8px 16px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.25s ease;
+}
+
+.sound-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--cyan);
+}
+
+.sound-btn.muted {
+  color: var(--text-dim);
+  border-color: var(--border-glass);
+}
+
+.sound-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px;
+}
+
+.sound-bars span {
+  width: 2px;
+  height: 100%;
+  background: var(--cyan);
+  border-radius: 1px;
+  animation: eq 0.8s ease-in-out infinite alternate;
+}
+
+.sound-bars span:nth-child(2) { animation-delay: 0.2s; height: 60%; }
+.sound-bars span:nth-child(3) { animation-delay: 0.4s; height: 80%; }
+.sound-btn.muted .sound-bars span {
+  animation: none;
+  height: 3px;
+  background: var(--text-dim);
+}
+
+@keyframes eq {
+  0% { height: 20%; }
+  100% { height: 100%; }
+}
+
+/* Main Layout */
+main {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 32px 40px;
+}
+
+.intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 28px;
+  gap: 24px;
+}
+
+.intro h2 {
+  font-size: clamp(24px, 2.8vw, 36px);
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #fff;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--cyan);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
+}
+
+.intro p {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 0;
+  max-width: 420px;
+}
+
+/* Grid Workspace */
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 24px;
+}
+
+/* Canvas Experiment Card */
+.experiment {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.stage-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.live-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.live-badge i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
+  animation: pulseDot 2s infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+.mono {
+  font-family: "Consolas", monospace;
+  direction: ltr;
+  font-size: 12px;
+  color: var(--cyan);
+  letter-spacing: 1px;
+}
+
+/* Canvas Wrap */
+.canvas-wrap {
+  position: relative;
+  height: 480px;
+  background: #05070f;
+  cursor: crosshair;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.field-label, .field-coordinate {
+  position: absolute;
+  bottom: 14px;
+  font-size: 11px;
+  font-family: monospace;
+  color: var(--text-dim);
+  pointer-events: none;
+  letter-spacing: 1.5px;
+}
+
+.field-label { right: 24px; }
+.field-coordinate { left: 24px; }
+
+/* Interactive Hint */
+.interactive-hint {
+  position: absolute;
+  top: 14px;
+  left: 24px;
+  font-size: 11px;
+  color: rgba(140, 170, 220, 0.7);
+  background: rgba(10, 15, 30, 0.6);
+  backdrop-filter: blur(8px);
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+}
+
+/* Story Caption */
+.caption {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  background: rgba(10, 14, 25, 0.6);
+  border-top: 1px solid var(--border-glass);
+}
+
+.stage-num {
+  font-family: "Consolas", monospace;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--violet);
+  border-left: 1px solid var(--border-glass);
+  padding-left: 16px;
+}
+
+.caption p {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--text-main);
+  transition: opacity 0.3s;
+}
+
+/* Transport Controls */
+.transport {
+  padding: 20px 24px;
+  background: rgba(8, 12, 22, 0.85);
+  border-top: 1px solid var(--border-glass);
+}
+
+.timeline-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  outline: none;
+  margin: 8px 0 16px;
+  cursor: ew-resize;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 10px var(--cyan);
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+  transform: scale(1.3);
+  box-shadow: 0 0 15px var(--cyan);
+}
+
+/* Phase Jump Pills */
+.phase-jumps {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.phase-jumps button {
+  flex: 1;
+  min-width: 70px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: 11.5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.phase-jumps button:hover {
+  background: rgba(255, 255, 255, 0.09);
+  color: #fff;
+}
+
+.phase-jumps button[aria-pressed="true"] {
+  background: rgba(163, 112, 247, 0.2);
+  border-color: var(--violet);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(163, 112, 247, 0.3);
+}
+
+/* Transport Buttons */
+.transport-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-glass);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #4cc9f0, #4361ee);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(76, 201, 240, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(76, 201, 240, 0.45);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.rate-select {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.rate-select select {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-glass);
+  color: var(--text-main);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  outline: none;
+  cursor: pointer;
+}
+
+/* Side Panel */
+.panel {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.panel-section {
+  padding: 24px;
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.panel-section h3 {
+  font-size: 17px;
+  margin: 0 0 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* Scenarios */
+.scenarios {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.scenario-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-glass);
+  background: rgba(255, 255, 255, 0.02);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.scenario-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.scenario-card:has(input:checked) {
+  background: rgba(163, 112, 247, 0.12);
+  border-color: var(--violet);
+  box-shadow: 0 0 14px rgba(163, 112, 247, 0.2);
+}
+
+.scenario-card input {
+  position: absolute;
+  opacity: 0;
+}
+
+.scenario-num {
+  font-family: monospace;
+  font-size: 12px;
+  color: var(--violet);
+  font-weight: bold;
+}
+
+.scenario-content strong {
+  display: block;
+  font-size: 13px;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.scenario-content small {
+  display: block;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.scenario-indicator {
+  margin-right: auto;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--text-dim);
+  transition: all 0.2s;
+}
+
+.scenario-card:has(input:checked) .scenario-indicator {
+  border-color: var(--violet);
+  background: var(--violet);
+  box-shadow: 0 0 8px var(--violet);
+}
+
+/* Live Telemetry */
+.telemetry {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.telemetry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.energy-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.energy-box {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  text-align: center;
+}
+
+.energy-box.yin {
+  border-color: rgba(163, 112, 247, 0.3);
+}
+
+.energy-box.yang {
+  border-color: rgba(255, 215, 0, 0.3);
+}
+
+.energy-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot.yin-dot { background: #9d4edd; box-shadow: 0 0 6px #9d4edd; }
+.dot.yang-dot { background: #ffbe0b; box-shadow: 0 0 6px #ffbe0b; }
+
+.energy-val {
+  font-family: monospace;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.yin .energy-val { color: #d0b0ff; }
+.yang .energy-val { color: #ffe699; }
+
+/* Gauge / Strain */
+.strain-container {
+  margin-top: 6px;
+}
+
+.strain-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.strain-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.strain-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--cyan) 0%, var(--green) 25%, var(--gold) 55%, #ff6633 75%, var(--crimson) 100%);
+  border-radius: 5px;
+  transition: width 0.12s ease-out;
+  box-shadow: 0 0 10px rgba(255, 51, 102, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  position: relative;
+}
+
+.strain-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 12px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 0 5px 5px 0;
+  filter: blur(2px);
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--text-muted);
+  padding: 6px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.stat-row b {
+  font-family: monospace;
+  font-size: 13px;
+  color: #fff;
+}
+
+/* Philosophy Banner */
+.philosophy {
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(14, 18, 32, 0.9);
+  border-top: 1px solid var(--border-glass);
+  margin-top: auto;
+}
+
+.philosophy-icon {
+  font-size: 28px;
+  color: var(--cyan);
+  filter: drop-shadow(0 0 8px rgba(76, 201, 240, 0.5));
+}
+
+.philosophy p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.philosophy strong {
+  color: #fff;
+}
+
+/* Footer */
+footer {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 24px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: var(--text-dim);
+  border-top: 1px solid var(--border-glass);
+}
+
+/* Responsive */
+@media (max-width: 1080px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+  .canvas-wrap {
+    height: 400px;
+  }
+}
+
+@media (max-width: 720px) {
+  .header, main, footer {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .intro {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .canvas-wrap {
+    height: 340px;
+  }
+  .transport-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .btn-group {
+    width: 100%;
+  }
+  .btn-group .btn {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+/* ========================================================
+   نمط المختبر التفاعلي المستقر (Stable Sandbox Mode Styles)
+   ======================================================== */
+.mode-switch-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  background: rgba(10, 15, 28, 0.7);
+  padding: 6px;
+  border-radius: 30px;
+  border: 1px solid var(--border-glass);
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mode-tab {
+  padding: 8px 22px;
+  border-radius: 24px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+}
+
+.mode-tab:hover {
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.mode-tab.active {
+  background: linear-gradient(135deg, rgba(76, 201, 240, 0.2), rgba(163, 112, 247, 0.25));
+  border-color: var(--border-active);
+  color: #fff;
+  box-shadow: 0 0 16px rgba(76, 201, 240, 0.3);
+}
+
+/* Sandbox Deck */
+.sandbox-deck {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.channels-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 680px) {
+  .channels-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.channel-card {
+  background: rgba(15, 20, 36, 0.65);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  transition: all 0.3s ease;
+}
+
+.channel-card.yin-channel {
+  border-right: 3px solid var(--violet);
+}
+
+.channel-card.yang-channel {
+  border-right: 3px solid var(--cyan);
+}
+
+.channel-card:focus-within {
+  border-color: var(--border-active);
+  box-shadow: 0 0 18px rgba(120, 180, 255, 0.15);
+}
+
+.channel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.channel-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.channel-val-badge {
+  font-family: "Consolas", monospace;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-glass);
+}
+
+.yin-channel .channel-val-badge { color: #d0bfff; }
+.yang-channel .channel-val-badge { color: #ffe89e; }
+
+.channel-controls-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.channel-controls-row input[type=range] {
+  flex: 1;
+  margin: 0;
+}
+
+.nudge-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-glass);
+  color: var(--text-main);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: monospace;
+}
+
+.nudge-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  transform: scale(1.05);
+}
+
+/* Presets Bar */
+.presets-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 12px 16px;
+  background: rgba(12, 16, 30, 0.5);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-glass);
+}
+
+.presets-label {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-left: 6px;
+}
+
+.preset-chip {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-glass);
+  color: var(--text-muted);
+  padding: 5px 12px;
+  border-radius: 16px;
+  font-size: 11.5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.preset-chip:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-color: var(--border-active);
+}
+
+.preset-chip.danger:hover {
+  background: rgba(255, 51, 102, 0.2);
+  border-color: var(--crimson);
+  color: #ff99b3;
+}
+
+/* Sandbox Bottom Actions */
+.sandbox-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.harmonize-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+.harmonize-toggle input {
+  cursor: pointer;
+  accent-color: var(--cyan);
+  width: 16px;
+  height: 16px;
+}
+
+/* Rupture Alert Banner */
+.rupture-banner {
+  background: linear-gradient(135deg, rgba(255, 51, 102, 0.2), rgba(120, 20, 50, 0.4));
+  border: 1px solid var(--crimson);
+  border-radius: var(--radius-md);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  animation: pulseRupture 1.5s infinite alternate;
+}
+
+@keyframes pulseRupture {
+  from { box-shadow: 0 0 10px rgba(255, 51, 102, 0.3); }
+  to { box-shadow: 0 0 24px rgba(255, 51, 102, 0.7); }
+}
+
+.rupture-banner-text {
+  font-size: 13px;
+  color: #ffccd8;
+}
+
+.rupture-banner-text strong {
+  display: block;
+  color: #fff;
+  font-size: 14px;
+}
+
+.btn-restore {
+  background: linear-gradient(135deg, #06d6a0, #118ab2);
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(6, 214, 160, 0.3);
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn-restore:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(6, 214, 160, 0.5);
+}
+
+/* ========================================================
+   مؤشر التناغم الكوني الحي (Harmony Gauge)
+   ======================================================== */
+.harmony-gauge-container {
+  background: rgba(10, 14, 28, 0.7);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  transition: all 0.3s ease;
+}
+
+.harmony-gauge-container.harmony-perfect {
+  border-color: rgba(6, 214, 160, 0.4);
+  box-shadow: 0 0 16px rgba(6, 214, 160, 0.15);
+}
+
+.harmony-gauge-container.harmony-warning {
+  border-color: rgba(255, 190, 11, 0.35);
+}
+
+.harmony-gauge-container.harmony-danger {
+  border-color: rgba(255, 51, 102, 0.4);
+  box-shadow: 0 0 16px rgba(255, 51, 102, 0.15);
+  animation: pulseRupture 2s infinite alternate;
+}
+
+.harmony-gauge-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.harmony-gauge-icon {
+  font-size: 20px;
+  filter: drop-shadow(0 0 6px rgba(76, 201, 240, 0.5));
+  animation: subtleSpin 20s linear infinite;
+  display: inline-block;
+  transition: filter 0.3s;
+}
+
+.harmony-danger .harmony-gauge-icon {
+  filter: drop-shadow(0 0 8px rgba(255, 51, 102, 0.7));
+  animation: none;
+}
+
+.harmony-gauge-label {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.harmony-gauge-pct {
+  font-family: "Consolas", monospace;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: color 0.3s;
+}
+
+.harmony-gauge-track {
+  height: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+.harmony-gauge-fill {
+  height: 100%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #06d6a0, #4cc9f0, #a370f7);
+  transition: width 0.15s ease-out, background 0.3s;
+  box-shadow: 0 0 12px rgba(6, 214, 160, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+}
+
+.harmony-gauge-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), transparent);
+  border-radius: 6px 6px 0 0;
+}
+
+.harmony-danger .harmony-gauge-fill {
+  background: linear-gradient(90deg, #ff3366, #ff6633, #ffbe0b);
+  box-shadow: 0 0 12px rgba(255, 51, 102, 0.5);
+}
+
+/* تحسين slider thumb للمختبر */
+.channel-controls-row input[type=range]::-webkit-slider-thumb {
+  box-shadow: 0 0 10px rgba(76, 201, 240, 0.5);
+}
+
+.yin-channel input[type=range]::-webkit-slider-thumb {
+  background: linear-gradient(135deg, #a370f7, #7c3aed);
+  box-shadow: 0 0 10px rgba(163, 112, 247, 0.5);
+}
+
+.yang-channel input[type=range]::-webkit-slider-thumb {
+  background: linear-gradient(135deg, #ffbe0b, #f59e0b);
+  box-shadow: 0 0 10px rgba(255, 190, 11, 0.5);
+}
+
+  </style>
+</head>
+<body>
+
+
+  <!-- شريط العنوان العلوي -->
+  <header class="header">
+    <a class="brand" href="./">
+      <span class="brand-mark" aria-hidden="true">☯</span>
+      <div class="brand-text">
+        <h1>الوجود الفائق</h1>
+        <small>محاكاة التكوّن، الطاقة، والاتزان الكوني</small>
+      </div>
+    </a>
+    
+    <div class="header-actions">
+      <!-- عداد الدورات الكونية الأبدية -->
+      <div id="cycle-badge" class="cycle-badge" title="الدورة الكونية الأبدية تتكرر بلا نهاية">
+        <span>دورة كونيّة</span>
+        <b id="cycle-num">#01</b>
+        <span style="color: var(--cyan); font-size: 14px;">♾</span>
+      </div>
+
+      <!-- زر تفعيل/كتم الصوت الإجرائي -->
+      <button id="sound-toggle" class="sound-btn" type="button" aria-label="التحكم بالصوت الكوني">
+        <div class="sound-bars">
+          <span></span><span></span><span></span>
+        </div>
+        <span id="sound-text">الصوت مفعل</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- المحتوى الرئيسي -->
+  <main>
+    <div class="intro">
+      <div>
+        <span class="eyebrow">من نقطتين، ينبثق الكون</span>
+        <h2>كل طرف يحمل في جوهره بداية الآخر.</h2>
+      </div>
+      <p>
+        نقطة تبتلع نقيضها في لولب طاقة أزلي. كتلتان تتقاربان حتى التمازج المطلق،
+        ودائرة يحفظها الاتزان وما يخرج منها يبقى خالداً في الوجود.
+      </p>
+    </div>
+
+    <!-- شريط اختيار النمط: الدورة الأبدية أو المختبر التفاعلي المستقر -->
+    <div class="mode-switch-bar" role="tablist" aria-label="أنماط المحاكاة">
+      <button id="tab-cycle" class="mode-tab active" role="tab" aria-selected="true" type="button">
+        <span>♾</span>
+        <span>الدورة الكونية الأبدية</span>
+      </button>
+      <button id="tab-sandbox" class="mode-tab" role="tab" aria-selected="false" type="button">
+        <span>🎛</span>
+        <span>المختبر التفاعلي المستقر</span>
+      </button>
+    </div>
+
+    <div class="workspace">
+      <!-- قسم المحاكاة الرئيسي والشاشة -->
+      <section class="experiment glass" aria-label="محاكاة الطاقة الكونية">
+        <div class="stage-head">
+          <div class="live-badge">
+            <i></i>
+            <span id="phase">البذرتان الأوليتان</span>
+          </div>
+          <span id="stamp" class="mono">00:00 / 00:24</span>
+        </div>
+
+        <div class="canvas-wrap">
+          <canvas id="world" role="img" aria-label="محاكاة الين واليانج الكونية"></canvas>
+          <span class="interactive-hint">✦ حرّك المؤشر للتفاعل مع حقل الجاذبية</span>
+          <span class="field-label">بيئة الوجود / الفراغ الكوني</span>
+          <span class="field-coordinate mono">YIN · YANG · FLUX</span>
+        </div>
+
+        <!-- السرد الفلسفي الحي للمرحلة الحالية -->
+        <div class="caption">
+          <span id="stage-number" class="stage-num">01</span>
+          <p id="story" aria-live="polite">نقطتان في الفراغ الكوني، وحولهما طاقة أزلية تنتظر التجمّع.</p>
+        </div>
+
+        <!-- 1. شريط التحكم الزمني (نمط الدورة الكونية) -->
+        <div id="cycle-transport" class="transport">
+          <div class="timeline-row">
+            <label for="timeline">الزمن الكوني المنساب</label>
+            <span id="time-label" class="mono">0.0s</span>
+          </div>
+
+          <input id="timeline" type="range" min="0" max="24" step="0.01" value="0" aria-label="شريط زمن التجربة" dir="ltr">
+
+          <!-- أزرار القفز السريع للمراحل -->
+          <div class="phase-jumps" aria-label="الانتقال السريع بين مراحل التكوّن">
+            <button type="button" data-jump="0.1" data-phase="1" aria-pressed="true">البداية</button>
+            <button type="button" data-jump="2.8" data-phase="1" aria-pressed="false">تجمّع الطاقة</button>
+            <button type="button" data-jump="7.2" data-phase="2" aria-pressed="false">الاندماج الأبدي</button>
+            <button type="button" data-jump="9.8" data-phase="3" aria-pressed="false">كمال التوازن</button>
+            <button type="button" data-jump="shed" data-phase="4" aria-pressed="false">الانهيار والعودة للكون</button>
+          </div>
+
+          <!-- أزرار التشغيل والسرعة -->
+          <div class="transport-buttons">
+            <div class="btn-group">
+              <button id="play" class="btn btn-primary" type="button">
+                <span id="play-icon" aria-hidden="true">▶</span>
+                <span id="play-text">بدء التكوّن الكوني</span>
+              </button>
+              <button id="replay" class="btn btn-secondary" type="button" title="إعادة التجربة من البداية">
+                <span>↺ إعادة</span>
+              </button>
+            </div>
+
+            <label class="rate-select">
+              <span>سرعة المحاكاة</span>
+              <select id="rate" aria-label="سرعة العرض">
+                <option value="0.5">0.5×</option>
+                <option value="1" selected>1.0×</option>
+                <option value="1.5">1.5×</option>
+                <option value="2">2.0×</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <!-- 2. منصة التحكم التفاعلية للمختبر المستقر (Sandbox Deck) -->
+        <div id="sandbox-transport" class="transport sandbox-deck" style="display: none;">
+          <!-- تنبيه الانفجار والتمزق الكوني -->
+          <div id="rupture-banner" class="rupture-banner" style="display: none;">
+            <div class="rupture-banner-text">
+              <strong>⚠️ حدث تمزق كوني حرج (100% إجهاد)!</strong>
+              <span>تجاوز النظام حد الاستيعاب وانفصلت الكتلتان؛ استعد التوازن لإعادة بناء الدائرة.</span>
+            </div>
+            <button id="btn-restore-rupture" class="btn-restore" type="button">↺ استعادة الاتزان المقدس</button>
+          </div>
+          <!-- مؤشر التناغم الكوني الحي (Live Harmony Gauge) -->
+          <div id="harmony-gauge" class="harmony-gauge-container">
+            <div class="harmony-gauge-header">
+              <span id="harmony-icon" class="harmony-gauge-icon">☯</span>
+              <span id="harmony-label" class="harmony-gauge-label">اتزان مقدس</span>
+              <span id="harmony-pct" class="harmony-gauge-pct">100%</span>
+            </div>
+            <div class="harmony-gauge-track">
+              <div id="harmony-fill" class="harmony-gauge-fill" style="width: 100%"></div>
+            </div>
+          </div>
+
+          <!-- سلايدرات التحكم في الين واليانج -->
+          <div class="channels-grid">
+            <!-- قناة الين -->
+            <div class="channel-card yin-channel">
+              <div class="channel-header">
+                <div class="channel-title">
+                  <span style="color: var(--violet); font-size: 16px;">🌑</span>
+                  <span>طاقة الين (Yin)</span>
+                </div>
+                <span id="val-yin" class="channel-val-badge">12.0</span>
+              </div>
+              <div class="channel-controls-row">
+                <button id="nudge-yin-down" class="nudge-btn" type="button" title="إنقاص الين">-2</button>
+                <input id="slider-yin" type="range" min="0" max="30" step="0.5" value="12" aria-label="مقدار طاقة الين" dir="ltr">
+                <button id="nudge-yin-up" class="nudge-btn" type="button" title="زيادة الين">+2</button>
+              </div>
+            </div>
+
+            <!-- قناة اليانج -->
+            <div class="channel-card yang-channel">
+              <div class="channel-header">
+                <div class="channel-title">
+                  <span style="color: var(--gold); font-size: 16px;">🌕</span>
+                  <span>طاقة اليانج (Yang)</span>
+                </div>
+                <span id="val-yang" class="channel-val-badge">12.0</span>
+              </div>
+              <div class="channel-controls-row">
+                <button id="nudge-yang-down" class="nudge-btn" type="button" title="إنقاص اليانج">-2</button>
+                <input id="slider-yang" type="range" min="0" max="30" step="0.5" value="12" aria-label="مقدار طاقة اليانج" dir="ltr">
+                <button id="nudge-yang-up" class="nudge-btn" type="button" title="زيادة اليانج">+2</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- أوضاع كونية مسبقة -->
+          <div class="presets-bar">
+            <span class="presets-label">أوضاع كونيّة جاهزة:</span>
+            <button class="preset-chip" type="button" data-yin="12" data-yang="12">☯ اتزان مقدس (12:12)</button>
+            <button class="preset-chip" type="button" data-yin="22" data-yang="6">🌑 طغيان الين (22:6)</button>
+            <button class="preset-chip" type="button" data-yin="6" data-yang="22">🌕 طغيان اليانج (6:22)</button>
+            <button class="preset-chip" type="button" data-yin="26" data-yang="26">⚡ حمل فائق (26:26)</button>
+            <button class="preset-chip danger" type="button" data-yin="30" data-yang="1">💥 تمزق وانفجار (30:1)</button>
+            <button class="preset-chip" type="button" data-yin="3" data-yang="3">🌀 سكون الفراغ (3:3)</button>
+          </div>
+
+          <!-- خيارات المختبر وأزرار الضبط -->
+          <div class="sandbox-actions">
+            <label class="harmonize-toggle" title="عند التفعيل، يتكيف الطرف الآخر تلقائياً لاستعادة التوازن الأبدي">
+              <input id="toggle-harmonize" type="checkbox">
+              <span>تفعيل قانون التناغم الذاتي (Auto-Harmonize)</span>
+            </label>
+            <button id="btn-reset-balance" class="btn btn-secondary" type="button">
+              <span>↺ إعادة ضبط الاتزان (12:12)</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- اللوحة الجانبية: السيناريوهات وقياسات الطاقة الحية -->
+      <aside class="panel glass">
+        <!-- 1. قسم السيناريوهات (في نمط الدورة الكونية) -->
+        <div id="scenario-section" class="panel-section">
+          <span class="eyebrow">بعد الاندماج (9s+)</span>
+          <h3>اختبر حدود التوازن</h3>
+          <fieldset class="scenarios" style="border:0; padding:0; margin:0;">
+            <legend class="sr-only">اختر سيناريو تدفق الطاقة</legend>
+
+            <label class="scenario-card">
+              <input type="radio" name="scenario" value="imbalance" checked>
+              <span class="scenario-num">01</span>
+              <div class="scenario-content">
+                <strong>زيادة غير متساوية</strong>
+                <small>طاقة الين تنمو أسرع مما يشوه الاتزان.</small>
+              </div>
+              <i class="scenario-indicator"></i>
+            </label>
+
+            <label class="scenario-card">
+              <input type="radio" name="scenario" value="overload">
+              <span class="scenario-num">02</span>
+              <div class="scenario-content">
+                <strong>أسرع من الاستيعاب</strong>
+                <small>دفعات شحن فائقة بلا زمن كافٍ للتكيف.</small>
+              </div>
+              <i class="scenario-indicator"></i>
+            </label>
+
+            <label class="scenario-card">
+              <input type="radio" name="scenario" value="loss">
+              <span class="scenario-num">03</span>
+              <div class="scenario-content">
+                <strong>فقد مفاجئ (تمزّق)</strong>
+                <small>اليانج يهرب نحو الفضاء الخارجي فجأة.</small>
+              </div>
+              <i class="scenario-indicator"></i>
+            </label>
+          </fieldset>
+        </div>
+
+        <!-- 2. قسم القوانين الكونية الحية (في نمط المختبر المستقر) -->
+        <div id="sandbox-laws-section" class="panel-section" style="display: none;">
+          <span class="eyebrow">قوانين الفيزياء الكونية</span>
+          <h3>قوانين الاتزان الفعّالة</h3>
+          <div style="display: flex; flex-direction: column; gap: 10px; font-size: 12.5px; color: var(--text-muted);">
+            <div style="background: rgba(255,255,255,0.03); padding: 8px 12px; border-radius: 8px; border-right: 2px solid var(--cyan);">
+              <b style="color: #fff;">قانون التكافؤ:</b> عندما تتساوى طاقتا الين واليانج ينعدم الإجهاد ويدور الكون في تناغم مطلق.
+            </div>
+            <div style="background: rgba(255,255,255,0.03); padding: 8px 12px; border-radius: 8px; border-right: 2px solid var(--gold);">
+              <b style="color: #fff;">قانون التشوّه الهندسي:</b> غلبة أي طرف تشوه المنحنى الفاصل وتثقل الدوران وتزيح مركز الثقل.
+            </div>
+            <div style="background: rgba(255,255,255,0.03); padding: 8px 12px; border-radius: 8px; border-right: 2px solid var(--crimson);">
+              <b style="color: #fff;">قانون الانفجار الحرج:</b> عند وصول الإجهاد إلى 95% فما فوق، يتمزق التماسك وتنفصل الكتلتان بانفجار كوني هائل.
+            </div>
+            <div style="background: rgba(255,255,255,0.03); padding: 8px 12px; border-radius: 8px; border-right: 2px solid var(--violet);">
+              <b style="color: #fff;">قانون حفظ الطاقة:</b> أي طاقة تفقدها الدائرة تضيء فضاء الكون المحيط بلا نقصان.
+            </div>
+          </div>
+        </div>
+
+        <!-- القياسات الكونية الحية (Telemetry HUD) -->
+        <div class="panel-section telemetry">
+          <div class="telemetry-header">
+            <span>توزيع الطاقة الحية</span>
+            <span class="mono">UNITS</span>
+          </div>
+
+          <!-- صناديق مقارنة الين واليانج -->
+          <div class="energy-comparison">
+            <div class="energy-box yin">
+              <div class="energy-label">
+                <span class="dot yin-dot"></span>
+                <span>طاقة الين (Yin)</span>
+              </div>
+              <div id="inside-yin" class="energy-val">12.0</div>
+            </div>
+
+            <div class="energy-box yang">
+              <div class="energy-label">
+                <span class="dot yang-dot"></span>
+                <span>طاقة اليانج (Yang)</span>
+              </div>
+              <div id="inside-yang" class="energy-val">12.0</div>
+            </div>
+          </div>
+
+          <!-- قياس الطاقة المحفوظة في بيئة الكون -->
+          <div class="stat-row">
+            <span>طاقة الين في الفراغ الخارجي</span>
+            <b id="outside-yin">10.0</b>
+          </div>
+          <div class="stat-row">
+            <span>طاقة اليانج في الفراغ الخارجي</span>
+            <b id="outside-yang">10.0</b>
+          </div>
+
+          <!-- مؤشر الإجهاد والتحمل -->
+          <div class="strain-container">
+            <div class="strain-labels">
+              <span>إجهاد التماسك (Strain)</span>
+              <b id="strain-value">0%</b>
+            </div>
+            <div id="strain-meter" class="strain-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div id="strain-fill" class="strain-fill"></div>
+            </div>
+          </div>
+
+          <!-- سرعة الدوران -->
+          <div class="stat-row">
+            <span>سرعة دوران الدائرة</span>
+            <b id="spin-value">—</b>
+          </div>
+        </div>
+
+        <!-- المبدأ الفلسفي الأبدي والدورة الكبرى -->
+        <div class="philosophy">
+          <span class="philosophy-icon" aria-hidden="true">♾</span>
+          <p>
+            قانون الدورة الكونية الكبرى:<br>
+            <strong>«كما انبثقت الطاقة من الكون، تعود إليه عند الانهيار بلا نقصان.»</strong>
+          </p>
+        </div>
+      </aside>
+    </div>
+
+    <!-- تذييل الصفحة -->
+    <footer>
+      <span>تصوّر فني وحسابي فائق للأزلية والتناغم الكوني.</span>
+      <span>تجمّع ✦ اندماج ✦ دوران ✦ حفظ الطاقة ✦ مختبر تفاعلي مستقر</span>
+    </footer>
+  </main>
+
+  <!-- تضمين كود الجافاسكربت المعياري -->
+  
+
+  <script>
+(function() {
+  'use strict';
+
+  // --- ENGINE ---
+// engine.js - نموذج الفيزياء وحفظ الطاقة والدورة الكونية المتجددة
+const FORMATION = 9.0;
+const EXPLODE_TIME = 13.5;
+const DURATION = 24.0; // زمن الدورة الكونية الكاملة من الولادة إلى الانفجار ثم التجمع
+const DT = 1 / 120;
+const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+const smooth = v => {
+  const t = clamp(v);
+  return t * t * (3 - 2 * t);
+};
+const soften = v => {
+  const p = clamp(v);
+  return p * p * p * (p * (p * 6 - 15) + 10);
+};
+function createModel(kind = 'imbalance') {
+  let yin = 12, yang = 12, adapted = 24, strain = 0, angle = 0;
+  const broken = EXPLODE_TIME; // لحظة الانفجار الكوني المحتوم
+  let envYin = 0, envYang = 0;
+  const frames = [];
+  const emissions = [];
+
+  const totalSteps = Math.floor(15.0 / DT);
+  for (let n = 0; n <= totalSteps; n++) {
+    const t = n * DT;
+    const simTime = FORMATION + t;
+    let iy = 0, ia = 0;
+
+    if (simTime < broken) {
+      // مرحلة التوازن وتراكم الإجهاد حتى الانفجار
+      const p = (simTime - FORMATION) / (broken - FORMATION);
+      strain = clamp(p ** 1.8);
+
+      if (kind === 'imbalance') {
+        iy = 8.0 * p;
+        ia = 1.0;
+      } else if (kind === 'overload') {
+        const pulse = Math.sin(simTime * 8) > 0.3 ? 35 : 0;
+        iy = pulse;
+        ia = pulse;
+      } else {
+        // loss
+        if (simTime > 11.5) {
+          const l = 45 * DT;
+          yang = Math.max(2, yang - l);
+          envYang += l;
+        }
+      }
+
+      yin += iy * DT;
+      yang += ia * DT;
+    } else {
+      // بعد الانفجار: تفكك الكتلتين وعودة الطاقة كاملة إلى الوجود
+      strain = 1.0;
+      const decay = Math.exp(-1.4 * DT);
+      const lossY = yin * (1 - decay);
+      const lossA = yang * (1 - decay);
+      envYin += lossY;
+      envYang += lossA;
+      yin *= decay;
+      yang *= decay;
+
+      if (yin < 0.05) { envYin += yin; yin = 0; }
+      if (yang < 0.05) { envYang += yang; yang = 0; }
+    }
+
+    const total = yin + yang;
+    const speed = total > 0.1 ? Math.min(1.2, 24 / total) : 0;
+    if (n) angle += DT * 7.3 * speed;
+
+    frames.push({
+      t,
+      simTime,
+      yin,
+      yang,
+      total,
+      envYin,
+      envYang,
+      strain,
+      angle,
+      speed,
+      broken: broken - FORMATION,
+      iy,
+      ia
+    });
+  }
+
+  return {
+    kind,
+    frames,
+    emissions,
+    broken: broken - FORMATION,
+    sample(time) {
+      const at = clamp(time, 0, 15.0) / DT;
+      const index = Math.floor(at);
+      const a = frames[index] || frames[0];
+      const b = frames[Math.min(index + 1, frames.length - 1)];
+      const mix = at - index;
+
+      const result = { ...a };
+      for (const key of ['t', 'yin', 'yang', 'total', 'envYin', 'envYang', 'strain', 'angle', 'speed']) {
+        result[key] = a[key] + (b[key] - a[key]) * mix;
+      }
+      return result;
+    }
+  };
+}
+function formationState(time) {
+  const merge = smooth((time - 6) / 3);
+  const blend = smooth((time - 8) / 1);
+  const gather = smooth((time - 0.5) / 5.5);
+  
+  let collected = 0;
+  for (let k = 0; k < 44; k++) {
+    if (time >= 1.5 + k * 0.097) {
+      collected += 0.25;
+    }
+  }
+  return {
+    merge,
+    blend,
+    gather,
+    collected,
+    inside: 1 + collected,
+    outside: Math.max(0, 11 - collected)
+  };
+}
+
+// --- فيزياء المختبر التفاعلي المستقر (Interactive Sandbox Physics) ---
+function createSandboxState() {
+  return {
+    yin: 12.0,
+    yang: 12.0,
+    targetYin: 12.0,
+    targetYang: 12.0,
+    autoHarmonize: false,
+    angle: 0,
+    ruptured: false,
+    ruptureAge: 0,
+    justRuptured: false
+  };
+}
+function updateSandboxPhysics(state, dt) {
+  state.justRuptured = false;
+
+  // قانون التناغم الذاتي (إذا تم تفعيل التوازن التلقائي)
+  if (state.autoHarmonize) {
+    const avg = (state.yin + state.yang) / 2;
+    state.yin += (avg - state.yin) * Math.min(1, dt * 2.2);
+    state.yang += (avg - state.yang) * Math.min(1, dt * 2.2);
+    state.targetYin = state.yin;
+    state.targetYang = state.yang;
+  } else {
+    // حركة انسيابية ناعمة جداً نحو القيمة المستهدفة
+    state.yin += (state.targetYin - state.yin) * Math.min(1, dt * 10.0);
+    state.yang += (state.targetYang - state.yang) * Math.min(1, dt * 10.0);
+  }
+
+  const total = Math.max(0.1, state.yin + state.yang);
+  const diff = Math.abs(state.yin - state.yang);
+  const ratio = diff / total; // من 0 (تطابق تام) إلى 1 (انعدام طرف)
+
+  // قوانين الإجهاد الكوني:
+  // 1. إجهاد عدم التكافؤ (كلما تباعدت طاقتي الين واليانج)
+  const imbalanceStrain = ratio ** 1.35;
+  // 2. إجهاد الحمولة الزائدة (إذا تجاوز المجموع السعة الطبيعية 24 وحدة)
+  const overloadStrain = total > 24.0 ? Math.min(1.0, ((total - 24.0) / 14.0) ** 1.3) : 0;
+  // 3. إجهاد الفراغ والنضوب (إذا قل المجموع عن 6 وحدات)
+  const starvationStrain = total < 6.0 ? Math.min(1.0, ((6.0 - total) / 5.5) ** 1.4) : 0;
+
+  const rawStrain = Math.min(1.0, imbalanceStrain * 0.8 + overloadStrain * 0.65 + starvationStrain * 0.4);
+  const strain = clamp(rawStrain, 0, 1);
+
+  // سرعة الدوران:
+  // في حالة التوازن التام (24 وحدة) تدور بسرعة قياسية ~1.0
+  // الإجهاد يولد مقاومة واضطراباً يؤدي لتباطؤ الدوران واهتزازه
+  const baseSpeed = total > 0.4 ? Math.min(1.4, 24.0 / total) : 0;
+  const speed = baseSpeed * Math.max(0.04, 1.0 - strain * 0.55);
+  state.angle += dt * 7.3 * speed;
+
+  // قانون الانفجار والتمزق الحرج (عند بلوغ الإجهاد 95% فما فوق)
+  if (strain >= 0.95) {
+    if (!state.ruptured) {
+      state.ruptured = true;
+      state.ruptureAge = 0;
+      state.justRuptured = true;
+    } else {
+      state.ruptureAge += dt;
+    }
+  } else {
+    // إذا أعاد المستخدم خفض الإجهاد تحت 75%، يبدأ الالتئام التلقائي
+    if (state.ruptured) {
+      if (strain < 0.75) {
+        state.ruptured = false;
+        state.ruptureAge = 0;
+      } else {
+        state.ruptureAge += dt;
+      }
+    }
+  }
+
+  // قانون حفظ الطاقة في البيئة الكونية:
+  // الطاقة الأساسية المحفوظة في فضاء الوجود
+  const envYin = Math.max(0, 16.0 - state.yin * 0.5);
+  const envYang = Math.max(0, 16.0 - state.yang * 0.5);
+
+  return {
+    yin: state.yin,
+    yang: state.yang,
+    total,
+    envYin,
+    envYang,
+    strain,
+    speed,
+    angle: state.angle,
+    ruptured: state.ruptured,
+    ruptureAge: state.ruptureAge,
+    justRuptured: state.justRuptured,
+    broken: state.ruptured ? state.ruptureAge : null
+  };
+}
+
+
+  // --- AUDIO ---
+// audio.js - محرك المؤثرات الصوتية الإجرائية الفضائية (Web Audio API)
+class CosmicAudioEngine {
+  constructor() {
+    this.ctx = null;
+    this.isMuted = false;
+    this.initialized = false;
+    this.masterGain = null;
+    
+    this.droneOsc1 = null;
+    this.droneOsc2 = null;
+    this.droneFilter = null;
+    this.droneGain = null;
+
+    this.strainOsc = null;
+    this.strainFilter = null;
+    this.strainGain = null;
+
+    this.swirlGain = null;
+    this.swirlFilter = null;
+    this.noiseNode = null;
+  }
+
+  init() {
+    if (this.initialized) return;
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext) return;
+
+    this.ctx = new AudioContext();
+    this.masterGain = this.ctx.createGain();
+    this.masterGain.gain.setValueAtTime(0.38, this.ctx.currentTime);
+    this.masterGain.connect(this.ctx.destination);
+
+    // 1. Cosmic Drone (نغمة الكون العميقة)
+    this.droneOsc1 = this.ctx.createOscillator();
+    this.droneOsc2 = this.ctx.createOscillator();
+    this.droneOsc1.type = 'sine';
+    this.droneOsc2.type = 'triangle';
+    this.droneOsc1.frequency.setValueAtTime(55, this.ctx.currentTime);
+    this.droneOsc2.frequency.setValueAtTime(55.4, this.ctx.currentTime);
+
+    this.droneFilter = this.ctx.createBiquadFilter();
+    this.droneFilter.type = 'lowpass';
+    this.droneFilter.frequency.setValueAtTime(140, this.ctx.currentTime);
+
+    this.droneGain = this.ctx.createGain();
+    this.droneGain.gain.setValueAtTime(0.001, this.ctx.currentTime);
+
+    this.droneOsc1.connect(this.droneFilter);
+    this.droneOsc2.connect(this.droneFilter);
+    this.droneFilter.connect(this.droneGain);
+    this.droneGain.connect(this.masterGain);
+
+    this.droneOsc1.start();
+    this.droneOsc2.start();
+
+    // 2. Swirl / Energy Wind
+    this.noiseNode = this.createNoiseBufferNode();
+    this.swirlFilter = this.ctx.createBiquadFilter();
+    this.swirlFilter.type = 'bandpass';
+    this.swirlFilter.frequency.setValueAtTime(320, this.ctx.currentTime);
+    this.swirlFilter.Q.setValueAtTime(4.0, this.ctx.currentTime);
+
+    this.swirlGain = this.ctx.createGain();
+    this.swirlGain.gain.setValueAtTime(0.001, this.ctx.currentTime);
+
+    if (this.noiseNode) {
+      this.noiseNode.connect(this.swirlFilter);
+      this.swirlFilter.connect(this.swirlGain);
+      this.swirlGain.connect(this.masterGain);
+    }
+
+    // 3. Strain / Tension Sparkler
+    this.strainOsc = this.ctx.createOscillator();
+    this.strainOsc.type = 'sawtooth';
+    this.strainOsc.frequency.setValueAtTime(110, this.ctx.currentTime);
+
+    this.strainFilter = this.ctx.createBiquadFilter();
+    this.strainFilter.type = 'bandpass';
+    this.strainFilter.frequency.setValueAtTime(800, this.ctx.currentTime);
+    this.strainFilter.Q.setValueAtTime(6.0, this.ctx.currentTime);
+
+    this.strainGain = this.ctx.createGain();
+    this.strainGain.gain.setValueAtTime(0.0001, this.ctx.currentTime);
+
+    this.strainOsc.connect(this.strainFilter);
+    this.strainFilter.connect(this.strainGain);
+    this.strainGain.connect(this.masterGain);
+
+    this.strainOsc.start();
+
+    this.initialized = true;
+  }
+
+  createNoiseBufferNode() {
+    if (!this.ctx) return null;
+    const bufferSize = this.ctx.sampleRate * 2;
+    const noiseBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+    const output = noiseBuffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      output[i] = Math.random() * 2 - 1;
+    }
+    const whiteNoise = this.ctx.createBufferSource();
+    whiteNoise.buffer = noiseBuffer;
+    whiteNoise.loop = true;
+    whiteNoise.start();
+    return whiteNoise;
+  }
+
+  resume() {
+    if (!this.initialized) this.init();
+    if (this.ctx && this.ctx.state === 'suspended') {
+      this.ctx.resume();
+    }
+  }
+
+  toggleMute() {
+    this.isMuted = !this.isMuted;
+    if (!this.masterGain || !this.ctx) return this.isMuted;
+    const target = this.isMuted ? 0 : 0.38;
+    this.masterGain.gain.setTargetAtTime(target, this.ctx.currentTime, 0.05);
+    return this.isMuted;
+  }
+
+  update(time, f, isPlaying) {
+    if (!this.initialized || !this.ctx) return;
+    if (this.ctx.state === 'suspended' && isPlaying) this.ctx.resume();
+
+    const now = this.ctx.currentTime;
+    if (!isPlaying) {
+      this.droneGain.gain.setTargetAtTime(0.001, now, 0.1);
+      this.swirlGain.gain.setTargetAtTime(0.001, now, 0.1);
+      this.strainGain.gain.setTargetAtTime(0.0001, now, 0.1);
+      return;
+    }
+
+    const spinSpeed = f.speed !== null && f.speed !== undefined ? f.speed : 1.0;
+    const strain = f.strain || 0;
+
+    // نمط المختبر التفاعلي المستقر: الصوت يتغير مع الإجهاد والطاقة مباشرة
+    if (f.ruptured !== undefined) {
+      if (f.ruptured) {
+        // صوت تمزق مستمر: drone عميق مشوه + strain عالي جداً
+        this.droneGain.gain.setTargetAtTime(0.3, now, 0.15);
+        this.droneFilter.frequency.setTargetAtTime(60 + Math.sin(time * 6) * 30, now, 0.05);
+        this.droneOsc1.frequency.setTargetAtTime(35 + Math.sin(time * 3) * 8, now, 0.05);
+        this.swirlGain.gain.setTargetAtTime(0.18, now, 0.1);
+        this.swirlFilter.frequency.setTargetAtTime(200 + Math.sin(time * 11) * 100, now, 0.05);
+        this.strainGain.gain.setTargetAtTime(0.2, now, 0.05);
+        this.strainFilter.frequency.setTargetAtTime(400 + Math.sin(time * 7) * 200, now, 0.05);
+        this.strainOsc.frequency.setTargetAtTime(60 + Math.sin(time * 5) * 30, now, 0.05);
+        return;
+      }
+
+      // نغمة تتوازن مع حالة الطاقة الحية
+      const harmony = 1.0 - strain;
+      const droneFreq = 55 + harmony * 22; // أعلى عند الاتزان
+      this.droneOsc1.frequency.setTargetAtTime(droneFreq, now, 0.15);
+      this.droneOsc2.frequency.setTargetAtTime(droneFreq * 1.005 + strain * 2, now, 0.15);
+
+      this.droneGain.gain.setTargetAtTime(0.12 + harmony * 0.12 + strain * 0.08, now, 0.1);
+      this.droneFilter.frequency.setTargetAtTime(120 + harmony * 200 + strain * 180, now, 0.1);
+
+      this.swirlGain.gain.setTargetAtTime(0.04 + spinSpeed * 0.07, now, 0.1);
+      this.swirlFilter.frequency.setTargetAtTime(300 + spinSpeed * 200 + harmony * 100, now, 0.1);
+      this.swirlFilter.Q.setTargetAtTime(4.0 - strain * 2, now, 0.1);
+
+      if (strain > 0.12) {
+        const strainVolume = Math.min(0.3, (strain - 0.12) * 0.4);
+        this.strainGain.gain.setTargetAtTime(strainVolume, now, 0.05);
+        this.strainFilter.frequency.setTargetAtTime(600 + strain * 1400, now, 0.05);
+        this.strainOsc.frequency.setTargetAtTime(90 + strain * 280, now, 0.05);
+      } else {
+        this.strainGain.gain.setTargetAtTime(0.0001, now, 0.15);
+      }
+      return;
+    }
+
+    // نمط الدورة الكونية الأبدية (كما كان سابقاً)
+    if (time < 6.0) {
+      const p = time / 6.0;
+      this.droneGain.gain.setTargetAtTime(0.08 + p * 0.12, now, 0.1);
+      this.droneFilter.frequency.setTargetAtTime(120 + p * 180, now, 0.1);
+      this.swirlGain.gain.setTargetAtTime(0.03 + p * 0.06, now, 0.1);
+      this.swirlFilter.frequency.setTargetAtTime(250 + p * 300, now, 0.1);
+      this.strainGain.gain.setTargetAtTime(0.0001, now, 0.1);
+    } else if (time < 9.0) {
+      const p = (time - 6.0) / 3.0;
+      this.droneGain.gain.setTargetAtTime(0.2 + p * 0.15, now, 0.08);
+      this.droneFilter.frequency.setTargetAtTime(300 + p * 200, now, 0.08);
+      this.swirlGain.gain.setTargetAtTime(0.09 + p * 0.08, now, 0.08);
+      this.strainGain.gain.setTargetAtTime(0.0001, now, 0.1);
+    } else {
+      const isPostDissolve = f.broken !== null && (time - 9) > f.broken + 2.5;
+
+      if (isPostDissolve) {
+        this.droneGain.gain.setTargetAtTime(0.22, now, 0.2);
+        this.droneFilter.frequency.setTargetAtTime(105, now, 0.2);
+        this.swirlGain.gain.setTargetAtTime(0.015, now, 0.2);
+        this.strainGain.gain.setTargetAtTime(0.0001, now, 0.1);
+        return;
+      }
+
+      this.droneGain.gain.setTargetAtTime(0.18 + strain * 0.1, now, 0.1);
+      this.droneFilter.frequency.setTargetAtTime(180 + spinSpeed * 160 + strain * 250, now, 0.1);
+      
+      this.swirlGain.gain.setTargetAtTime(0.05 + spinSpeed * 0.08, now, 0.1);
+      this.swirlFilter.frequency.setTargetAtTime(350 + spinSpeed * 250, now, 0.1);
+
+      if (strain > 0.15) {
+        const strainVolume = Math.min(0.25, (strain - 0.15) * 0.35);
+        this.strainGain.gain.setTargetAtTime(strainVolume, now, 0.05);
+        this.strainFilter.frequency.setTargetAtTime(700 + strain * 1200, now, 0.05);
+        this.strainOsc.frequency.setTargetAtTime(110 + strain * 220, now, 0.05);
+      } else {
+        this.strainGain.gain.setTargetAtTime(0.0001, now, 0.1);
+      }
+    }
+  }
+
+  // رنين اكتمال الاندماج الأبدي في الثانية 9
+  playCelestialMerge() {
+    if (!this.initialized || !this.ctx || this.isMuted) return;
+    const now = this.ctx.currentTime;
+    
+    const freqs = [216, 432, 648, 864, 1296];
+    const gains = [0.22, 0.18, 0.10, 0.06, 0.03];
+
+    freqs.forEach((freq, idx) => {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, now);
+      osc.frequency.exponentialRampToValueAtTime(freq * 0.995, now + 4.0);
+
+      gain.gain.setValueAtTime(gains[idx], now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 3.8);
+
+      osc.connect(gain);
+      gain.connect(this.masterGain);
+
+      osc.start(now);
+      osc.stop(now + 4.0);
+    });
+
+    this.playBassDrop(60, 28, 2.5, 0.28);
+  }
+
+  // صوت الانفجار الكوني الهائل عند تمزق وانفصال الكتلتين (Cosmic Rupture Explosion)
+  playCosmicExplosion() {
+    if (!this.initialized || !this.ctx || this.isMuted) return;
+    const now = this.ctx.currentTime;
+
+    // 1. Sub-bass Mega Boom (انفجار الساب-باس العميق)
+    const subOsc = this.ctx.createOscillator();
+    const subGain = this.ctx.createGain();
+    subOsc.type = 'sine';
+    subOsc.frequency.setValueAtTime(160, now);
+    subOsc.frequency.exponentialRampToValueAtTime(24, now + 1.8);
+
+    subGain.gain.setValueAtTime(0.85, now);
+    subGain.gain.exponentialRampToValueAtTime(0.0001, now + 2.0);
+
+    subOsc.connect(subGain);
+    subGain.connect(this.masterGain);
+    subOsc.start(now);
+    subOsc.stop(now + 2.1);
+
+    // 2. High-Impact Noise Explosion (دوي الانفجار والشرخ الناري)
+    const bufferSize = this.ctx.sampleRate * 2.5;
+    const noiseBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+    const output = noiseBuffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      output[i] = (Math.random() * 2 - 1) * Math.exp(-i / (this.ctx.sampleRate * 0.45));
+    }
+    const noiseSource = this.ctx.createBufferSource();
+    noiseSource.buffer = noiseBuffer;
+
+    const noiseFilter = this.ctx.createBiquadFilter();
+    noiseFilter.type = 'lowpass';
+    noiseFilter.frequency.setValueAtTime(4800, now);
+    noiseFilter.frequency.exponentialRampToValueAtTime(80, now + 2.2);
+    noiseFilter.Q.setValueAtTime(3.5, now);
+
+    const noiseGain = this.ctx.createGain();
+    noiseGain.gain.setValueAtTime(0.95, now);
+    noiseGain.gain.exponentialRampToValueAtTime(0.0001, now + 2.3);
+
+    noiseSource.connect(noiseFilter);
+    noiseFilter.connect(noiseGain);
+    noiseGain.connect(this.masterGain);
+    noiseSource.start(now);
+    noiseSource.stop(now + 2.4);
+
+    // 3. Electrical Shatter Crunch (صوت التمزق والشرارة الكبرى)
+    const distOsc = this.ctx.createOscillator();
+    const distGain = this.ctx.createGain();
+    distOsc.type = 'sawtooth';
+    distOsc.frequency.setValueAtTime(450, now);
+    distOsc.frequency.exponentialRampToValueAtTime(30, now + 0.65);
+
+    distGain.gain.setValueAtTime(0.45, now);
+    distGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.7);
+
+    distOsc.connect(distGain);
+    distGain.connect(this.masterGain);
+    distOsc.start(now);
+    distOsc.stop(now + 0.75);
+  }
+
+  // صوت الولادة الكونية والتجمع التلقائي الجديد
+  playCosmicRebirth() {
+    if (!this.initialized || !this.ctx || this.isMuted) return;
+    const now = this.ctx.currentTime;
+    const freqs = [108, 216, 432, 648];
+    freqs.forEach((freq, idx) => {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'sine';
+      const startTime = now + idx * 0.1;
+      osc.frequency.setValueAtTime(freq, startTime);
+      osc.frequency.exponentialRampToValueAtTime(freq * 1.5, startTime + 2.0);
+      gain.gain.setValueAtTime(0.0001, startTime);
+      gain.gain.linearRampToValueAtTime(0.12, startTime + 0.4);
+      gain.gain.exponentialRampToValueAtTime(0.0001, startTime + 2.0);
+      osc.connect(gain);
+      gain.connect(this.masterGain);
+      osc.start(startTime);
+      osc.stop(startTime + 2.1);
+    });
+  }
+
+  playBassDrop(startFreq = 80, endFreq = 25, duration = 1.8, volume = 0.25) {
+    if (!this.initialized || !this.ctx || this.isMuted) return;
+    const now = this.ctx.currentTime;
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(startFreq, now);
+    osc.frequency.exponentialRampToValueAtTime(endFreq, now + duration);
+
+    gain.gain.setValueAtTime(volume, now);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+    osc.connect(gain);
+    gain.connect(this.masterGain);
+
+    osc.start(now);
+    osc.stop(now + duration);
+  }
+
+  playElectricZap() {
+    if (!this.initialized || !this.ctx || this.isMuted) return;
+    const now = this.ctx.currentTime;
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+    const filter = this.ctx.createBiquadFilter();
+
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(300 + Math.random() * 400, now);
+    osc.frequency.exponentialRampToValueAtTime(80, now + 0.15);
+
+    filter.type = 'bandpass';
+    filter.frequency.setValueAtTime(1800, now);
+    filter.Q.setValueAtTime(5.0, now);
+
+    gain.gain.setValueAtTime(0.12, now);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
+
+    osc.connect(filter);
+    filter.connect(gain);
+    gain.connect(this.masterGain);
+
+    osc.start(now);
+    osc.stop(now + 0.2);
+  }
+}
+const sound = new CosmicAudioEngine();
+
+
+  // --- MOTION ---
+// motion.js - الحسابات الهندسية ومسارات الجزيئات واللولبيات الكونية المستمرة
+const TAU = Math.PI * 2;
+const integral = v => {
+  const p = clamp(v);
+  return p ** 6 - 3 * p ** 5 + 2.5 * p ** 4;
+};
+const JOIN_ANGLE = 0.65 + 7.3 * 0.65 * 0.5;
+function joinAngle(t) {
+  return 0.65 * soften((t - 6) / 3) + 7.3 * 0.65 * integral((t - 8.35) / 0.65);
+}
+const rotate = (x, y, a) => ({
+  x: x * Math.cos(a) - y * Math.sin(a),
+  y: x * Math.sin(a) + y * Math.cos(a)
+});
+const radiusOf = f => 36 * Math.sqrt(Math.max(0.1, f.total) / 24);
+const visualShift = f => clamp((f.yin - f.yang) / Math.max(0.1, f.total) * 1.15, -0.62, 0.62) * radiusOf(f);
+
+// حساب نقاط الفصوص (Lobe Points) أثناء التكوّن
+function lobePoints(t, side, count = 240) {
+  const s = formationState(t);
+  const m = soften((t - 6) / 3);
+  const r = 5 + (36 / Math.sqrt(2) - 5) * Math.sqrt(s.gather);
+  const sign = side ? -1 : 1;
+  const points = [];
+
+  for (let i = 0; i < count; i++) {
+    const q = i / count;
+    let tx, ty;
+    if (q <= 0.5) {
+      const a = -Math.PI / 2 - q * TAU;
+      tx = 36 * Math.cos(a);
+      ty = 36 * Math.sin(a);
+    } else if (q <= 0.75) {
+      const a = Math.PI / 2 + (q - 0.5) * 4 * Math.PI;
+      tx = 18 * Math.cos(a);
+      ty = 18 + 18 * Math.sin(a);
+    } else {
+      const a = Math.PI / 2 - (q - 0.75) * 4 * Math.PI;
+      tx = 18 * Math.cos(a);
+      ty = -18 + 18 * Math.sin(a);
+    }
+
+    const a = -Math.PI / 2 - TAU * q;
+    const wave = Math.sin(q * 20 + t * 4) * (1 - m) * 0.6;
+    const currentR = r + wave;
+
+    points.push({
+      x: sign * ((-74 + currentR * Math.cos(a)) * (1 - m) + tx * m),
+      y: sign * (currentR * Math.sin(a) * (1 - m) + ty * m)
+    });
+  }
+  return points;
+}
+
+// حساب انفصال وتفكك الفصوص لحظة الانفجار الكبير (Explosive Rupture & Unmerging)
+function dissolvingLobePoints(side, breakAge, count = 200) {
+  const unmerge = soften(clamp(breakAge / 2.6));
+  const sign = side ? -1 : 1;
+
+  // الكتلتان تنفصلان وتتباعدان بقوة الانفجار
+  const sepDist = unmerge * 95;
+  const shrinkScale = Math.max(0.01, (1 - unmerge * 0.96));
+  const baseR = 36 * shrinkScale;
+  const points = [];
+
+  for (let i = 0; i < count; i++) {
+    const q = i / count;
+    let tx, ty;
+    if (q <= 0.5) {
+      const a = -Math.PI / 2 - q * TAU;
+      tx = baseR * Math.cos(a);
+      ty = baseR * Math.sin(a);
+    } else if (q <= 0.75) {
+      const a = Math.PI / 2 + (q - 0.5) * 4 * Math.PI;
+      tx = (baseR / 2) * Math.cos(a);
+      ty = (baseR / 2) + (baseR / 2) * Math.sin(a);
+    } else {
+      const a = Math.PI / 2 - (q - 0.75) * 4 * Math.PI;
+      tx = (baseR / 2) * Math.cos(a);
+      ty = -(baseR / 2) + (baseR / 2) * Math.sin(a);
+    }
+
+    const tear = Math.sin(q * 18 + breakAge * 9) * unmerge * 8;
+    points.push({
+      x: sign * (-sepDist + tx + tear),
+      y: sign * (ty + tear)
+    });
+  }
+  return { points, sepDist, unmerge, shrinkScale, bodyAlpha: Math.max(0, 1 - unmerge * 1.1) };
+}
+
+// موقع البذرتين المتجدد دائماً مع كل دورة
+function seedPosition(t, side) {
+  const sign = side ? -1 : 1;
+
+  if (t < FORMATION) {
+    const m = soften((t - 6) / 3);
+    return {
+      x: sign * -74 * (1 - m),
+      y: sign * -18 * m,
+      r: 5.2 - 1.25 * m,
+      alpha: 1.0
+    };
+  } else if (t < EXPLODE_TIME) {
+    return {
+      x: 0,
+      y: sign * -18,
+      r: 4.2,
+      alpha: 1.0
+    };
+  } else if (t < 17.5) {
+    // تتلاشى أثناء الانفجار
+    const unmerge = soften((t - EXPLODE_TIME) / 2.6);
+    return {
+      x: sign * (-74 * unmerge),
+      y: sign * -18,
+      r: 4.2 * (1 - unmerge),
+      alpha: Math.max(0, 1 - unmerge)
+    };
+  } else {
+    // تبدأ البذرتان الجديدتان في التوهج والظهور بسلاسة من سكون الفضاء (19.5s - 24.0s)
+    const rebirthProg = clamp((t - 19.5) / 3.5);
+    const alpha = soften(rebirthProg);
+    return {
+      x: sign * -74,
+      y: 0,
+      r: 5.2 * alpha,
+      alpha
+    };
+  }
+}
+
+// جزيئات الدورة الكونية اللانهائية المستمرة (Continuous Cyclic Particles)
+// تنطلق من الانفجار، تتمدد للخارج، ثم تستدير بنعومة وتتجاذب لتبدأ التجمع من جديد بلا انقطاع!
+function cyclicCosmicParticle(t, i) {
+  const side = i % 2;
+  const k = Math.floor(i / 2);
+  const sign = side ? -1 : 1;
+  const maxCosmicDist = 55 + (k % 8) * 11 + (k % 4) * 8; // أقصى مدى لانتشار الجزيء
+
+  // 1. مرحلة التجمع للداخل (0s - 6s)
+  if (t < 6.0) {
+    const end = 1.2 + k * 0.095;
+    const start = Math.max(0, end - 1.6);
+    const p = soften(clamp((t - start) / (end - start)));
+    const seed = seedPosition(t, side);
+    const a = k * 2.399963 + side * Math.PI + p * 4.2 + Math.sin(k + t * 3) * 0.2;
+    const d = maxCosmicDist * (1 - p);
+
+    return {
+      x: seed.x + Math.cos(a) * d,
+      y: seed.y + Math.sin(a) * d,
+      r: (1.5 + (k % 3) * 0.4) * (1 - soften((p - 0.82) / 0.18)),
+      alpha: 0.35 + 0.65 * p,
+      glow: 0.5 + 0.5 * p,
+      type: side ? 'yang' : 'yin'
+    };
+  }
+
+  // 2. مرحلة الاندماج والاتزان (6s - 13.5s)
+  if (t < EXPLODE_TIME) {
+    return null; // تكون الجزيئات مدمجة داخل جسد الين واليانج
+  }
+
+  // 3. مرحلة الانفجار والتشتت للخارج (13.5s - 18.5s)
+  const explodeAge = t - EXPLODE_TIME;
+  if (explodeAge < 5.0) {
+    const startLag = (k % 25) * 0.035;
+    if (explodeAge < startLag) return null;
+
+    const p = soften(clamp((explodeAge - startLag) / 2.6));
+    const unmergeDist = soften(clamp(explodeAge / 2.6)) * 85;
+    const originX = sign * -unmergeDist;
+
+    const angle = k * 2.399963 + side * Math.PI - p * 3.8 + Math.sin(k + t * 2.2) * 0.25;
+    const d = 8 + maxCosmicDist * 1.5 * p;
+
+    const x = originX * (1 - p * 0.5) + Math.cos(angle) * d;
+    const y = Math.sin(angle) * d;
+
+    return {
+      x,
+      y,
+      r: (1.8 + (k % 4) * 0.5) * (0.5 + 0.5 * (1 - soften((p - 0.85) / 0.15))),
+      alpha: Math.min(1, 0.4 + 0.6 * Math.sin(p * Math.PI * 0.95)),
+      glow: 1.8 * (1 - p * 0.3),
+      type: side ? 'yang' : 'yin'
+    };
+  }
+
+  // 4. مرحلة الاستدارة والتجاذب التلقائي لبدء التجمع من جديد (18.5s - 24.0s)
+  // هنا تتباطأ الجزيئات وتبدأ بجذب بعضها نحو البذرتين الجديدتين بسلاسة مطلقة
+  const returnProg = soften(clamp((t - 18.5) / 5.5));
+  const newSeed = seedPosition(t, side);
+
+  // تنتقل الجزيئات بانسيابية ناعمة من أقصى انتشار كوني نحو مدارات التجمع
+  const orbitAngle = k * 2.399963 + side * Math.PI + returnProg * 2.5 + Math.sin(k + t * 2) * 0.2;
+  const currentDist = maxCosmicDist * (1.5 - returnProg * 0.5); // تتراجع للمدار الأولي
+
+  const x = newSeed.x * returnProg + Math.cos(orbitAngle) * currentDist;
+  const y = Math.sin(orbitAngle) * currentDist;
+
+  return {
+    x,
+    y,
+    r: 1.5 + (k % 3) * 0.4,
+    alpha: 0.4 + 0.5 * returnProg,
+    glow: 0.8 + 0.6 * returnProg,
+    type: side ? 'yang' : 'yin'
+  };
+}
+function isDark(x, y, r, shift) {
+  const cy = y < 0 ? -r / 2 : r / 2;
+  const span = Math.sqrt(Math.max(0, (r / 2) ** 2 - (y - cy) ** 2));
+  return x <= shift + (y < 0 ? span : -span);
+}
+function decorateModel(model) {
+  model.incoming = [];
+  return model;
+}
+
+
+  // --- RENDERER ---
+// renderer.js - محرك الرسوم البصرية الفضائية الفائقة
+let stars = null;
+function getStars(count = 200) {
+  if (stars) return stars;
+  stars = [];
+  for (let i = 0; i < count; i++) {
+    stars.push({
+      x: (Math.random() - 0.5) * 850,
+      y: (Math.random() - 0.5) * 850,
+      r: Math.random() * 1.6 + 0.3,
+      alpha: Math.random() * 0.7 + 0.3,
+      twinkleSpeed: Math.random() * 2 + 1,
+      color: ['#ffffff', '#a8d8ff', '#ffd4a3', '#e0c3fc'][Math.floor(Math.random() * 4)]
+    });
+  }
+  return stars;
+}
+
+function path(ctx, points) {
+  if (!points || !points.length) return;
+  ctx.beginPath();
+  for (let i = 0; i < points.length; i++) {
+    const p = points[i];
+    i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y);
+  }
+  ctx.closePath();
+}
+
+function glowDisk(ctx, x, y, r, type, alpha = 1, glowIntensity = 1) {
+  if (r < 0.05 || alpha < 0.001) return;
+  ctx.save();
+  ctx.globalAlpha = Math.max(0, Math.min(1, ctx.globalAlpha * alpha));
+
+  const isYin = type === 'yin';
+  const mainColor = isYin ? '#0d0d14' : '#ffffff';
+  const glowColor = isYin ? 'rgba(138, 75, 255, ' : 'rgba(255, 215, 115, ';
+
+  if (glowIntensity > 0) {
+    const grad = ctx.createRadialGradient(x, y, 0, x, y, r * (2.8 + glowIntensity * 1.5));
+    grad.addColorStop(0, glowColor + (isYin ? '0.6)' : '0.8)'));
+    grad.addColorStop(0.4, glowColor + (isYin ? '0.25)' : '0.35)'));
+    grad.addColorStop(1, glowColor + '0)');
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(x, y, r * (2.8 + glowIntensity * 1.5), 0, TAU);
+    ctx.fill();
+  }
+
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, TAU);
+  ctx.fillStyle = mainColor;
+  ctx.fill();
+
+  ctx.strokeStyle = isYin ? 'rgba(180, 120, 255, 0.7)' : 'rgba(255, 255, 255, 0.9)';
+  ctx.lineWidth = 0.5;
+  ctx.stroke();
+
+  ctx.restore();
+}
+
+function radiantTrail(ctx, position, t, type, life = 0.16, width = 1.2, alpha = 0.35) {
+  ctx.save();
+  const isYin = type === 'yin';
+  const strokeColor = isYin ? '147, 85, 255' : '255, 235, 160';
+  ctx.lineWidth = width;
+  ctx.lineCap = 'round';
+
+  const steps = 6;
+  for (let j = 0; j < steps; j++) {
+    const a = position(t - (life * j) / steps);
+    const b = position(t - (life * (j + 1)) / steps);
+    if (!a || !b) continue;
+    const stepAlpha = alpha * (1 - j / steps);
+    ctx.strokeStyle = `rgba(${strokeColor}, ${stepAlpha})`;
+    ctx.beginPath();
+    ctx.moveTo(a.x, a.y);
+    ctx.lineTo(b.x, b.y);
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+
+function drawCosmicBackdrop(ctx, time, energyInEnv = 0) {
+  const cosmicGlowBoost = Math.min(1.0, energyInEnv / 24);
+
+  const starList = getStars();
+  for (const s of starList) {
+    const twinkle = 0.6 + 0.4 * Math.sin(time * s.twinkleSpeed + s.x);
+    ctx.save();
+    ctx.globalAlpha = Math.min(1, s.alpha * twinkle * (1 + cosmicGlowBoost * 0.7));
+    ctx.fillStyle = s.color;
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r * (1 + cosmicGlowBoost * 0.35), 0, TAU);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  const nebRadius = 260 + cosmicGlowBoost * 70;
+  const nebGrad = ctx.createRadialGradient(0, 0, 40, 0, 0, nebRadius);
+  nebGrad.addColorStop(0, `rgba(90, 45, 150, ${0.08 + cosmicGlowBoost * 0.12})`);
+  nebGrad.addColorStop(0.5, `rgba(25, 75, 130, ${0.05 + cosmicGlowBoost * 0.08})`);
+  nebGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+  ctx.fillStyle = nebGrad;
+  ctx.beginPath();
+  ctx.arc(0, 0, nebRadius, 0, TAU);
+  ctx.fill();
+
+  ctx.save();
+  ctx.strokeStyle = `rgba(140, 160, 190, ${0.12 + cosmicGlowBoost * 0.12})`;
+  ctx.lineWidth = 0.6;
+
+  for (const r of [85, 120, 162]) {
+    ctx.beginPath();
+    ctx.arc(0, 0, r, 0, TAU);
+    ctx.stroke();
+  }
+
+  const rot = time * 0.04;
+  ctx.rotate(rot);
+  ctx.strokeStyle = `rgba(150, 180, 220, ${0.22 + cosmicGlowBoost * 0.15})`;
+  for (let i = 0; i < 72; i++) {
+    const a = (i / 72) * TAU;
+    const isMajor = i % 6 === 0;
+    const rInner = isMajor ? 156 : 159;
+    const rOuter = 162;
+    ctx.lineWidth = isMajor ? 0.9 : 0.5;
+    ctx.beginPath();
+    ctx.moveTo(Math.cos(a) * rInner, Math.sin(a) * rInner);
+    ctx.lineTo(Math.cos(a) * rOuter, Math.sin(a) * rOuter);
+    ctx.stroke();
+  }
+
+  ctx.fillStyle = `rgba(180, 210, 255, ${0.35 + cosmicGlowBoost * 0.25})`;
+  for (let i = 0; i < 12; i++) {
+    const a = (i / 12) * TAU;
+    ctx.beginPath();
+    ctx.arc(Math.cos(a) * 120, Math.sin(a) * 120, 1.2, 0, TAU);
+    ctx.fill();
+  }
+
+  ctx.restore();
+}
+
+function drawBirth(ctx, t, reduced) {
+  const angle = reduced ? 0 : joinAngle(t);
+  ctx.save();
+  ctx.rotate(angle);
+
+  const shapes = [lobePoints(t, 0), lobePoints(t, 1)];
+  for (let side = 0; side < 2; side++) {
+    ctx.save();
+    ctx.shadowColor = side ? 'rgba(255, 230, 160, 0.4)' : 'rgba(130, 60, 240, 0.5)';
+    ctx.shadowBlur = 18;
+    path(ctx, shapes[side]);
+    ctx.fillStyle = side ? '#ffffff' : '#080811';
+    ctx.fill();
+    ctx.restore();
+
+    path(ctx, shapes[side]);
+    ctx.strokeStyle = side ? 'rgba(255, 255, 255, 0.8)' : 'rgba(150, 100, 255, 0.6)';
+    ctx.lineWidth = 0.8;
+    ctx.stroke();
+  }
+
+  for (let side = 0; side < 2; side++) {
+    const seed = seedPosition(t, side);
+    const type = side ? 'yin' : 'yang';
+    glowDisk(ctx, seed.x, seed.y, seed.r, type, seed.alpha, 2.2);
+
+    const pulse = (t * 2 + side * Math.PI) % 2;
+    ctx.save();
+    ctx.strokeStyle = side ? 'rgba(160, 90, 255, ' + (1 - pulse / 2) * 0.4 + ')' : 'rgba(255, 220, 140, ' + (1 - pulse / 2) * 0.5 + ')';
+    ctx.lineWidth = 0.8;
+    ctx.beginPath();
+    ctx.arc(seed.x, seed.y, seed.r + pulse * 6, 0, TAU);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  if (t >= 8.5 && t < 9.0) {
+    const prog = (t - 8.5) / 0.5;
+    ctx.save();
+    ctx.strokeStyle = `rgba(255, 255, 255, ${1 - prog})`;
+    ctx.lineWidth = 2 * (1 - prog);
+    ctx.beginPath();
+    ctx.arc(0, 0, prog * 110, 0, TAU);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  ctx.restore();
+}
+
+function drawBody(ctx, f, t, model, reduced, width, height) {
+  const angle = reduced ? 0 : f.angle + JOIN_ANGLE;
+  const shift = visualShift(f);
+  const strain = f.strain || 0;
+  const isExploded = f.ruptured !== undefined ? f.ruptured : (t >= EXPLODE_TIME);
+  const breakAge = f.ruptured !== undefined ? (f.ruptureAge || 0) : (isExploded ? Math.max(0, t - EXPLODE_TIME) : 0);
+
+  ctx.save();
+
+  // 1. وميض الانفجار الأبيض في اللحظات الأولى
+  if (isExploded && breakAge < 0.25) {
+    const flashProg = breakAge / 0.25;
+    ctx.save();
+    ctx.fillStyle = `rgba(255, 255, 255, ${0.55 * (1 - flashProg)})`;
+    ctx.fillRect(-width, -height, width * 2, height * 2);
+    ctx.restore();
+  }
+
+  // 2. هزة الكاميرا العنيفة عند الانفجار
+  if (isExploded && breakAge < 1.4) {
+    const shakeMag = (1 - breakAge / 1.4) * 11.0;
+    ctx.translate((Math.random() - 0.5) * shakeMag, (Math.random() - 0.5) * shakeMag);
+  } else if (!isExploded && strain > 0.6) {
+    const shakeMag = (strain - 0.6) * 4.0;
+    ctx.translate((Math.random() - 0.5) * shakeMag, (Math.random() - 0.5) * shakeMag);
+  }
+
+  // 3. حالة الانفجار وتفكك الكتلتين
+  if (isExploded) {
+    // موجة صدمة انفجارية متسعة بسرعة
+    if (breakAge < 2.5) {
+      const shockR = breakAge * 140;
+      ctx.save();
+      ctx.strokeStyle = `rgba(255, 230, 200, ${0.9 * (1 - breakAge / 2.5)})`;
+      ctx.lineWidth = 3.0 * (1 - breakAge / 2.5);
+      ctx.beginPath();
+      ctx.arc(0, 0, shockR, 0, TAU);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // الكتلتان تنفصلان وتتبخران
+    ctx.save();
+    ctx.rotate(angle);
+    for (let side = 0; side < 2; side++) {
+      const lobe = dissolvingLobePoints(side, breakAge);
+      if (!lobe || lobe.bodyAlpha < 0.005) continue;
+
+      ctx.save();
+      ctx.globalAlpha = lobe.bodyAlpha;
+      ctx.shadowColor = side ? 'rgba(255, 230, 160, 0.6)' : 'rgba(150, 80, 255, 0.7)';
+      ctx.shadowBlur = 24 * (1 - lobe.unmerge);
+
+      path(ctx, lobe.points);
+      ctx.fillStyle = side ? '#ffffff' : '#080812';
+      ctx.fill();
+
+      ctx.strokeStyle = side ? 'rgba(255, 255, 255, 0.8)' : 'rgba(180, 120, 255, 0.7)';
+      ctx.lineWidth = 0.9;
+      ctx.stroke();
+
+      const sign = side ? -1 : 1;
+      const seedR = 4.5 * lobe.shrinkScale;
+      glowDisk(ctx, sign * -lobe.sepDist, 0, seedR, side ? 'yin' : 'yang', lobe.bodyAlpha, 2.0);
+      ctx.restore();
+    }
+    ctx.restore();
+    ctx.restore();
+    return;
+  }
+
+  // 4. حالة التماسك والدوران قبل الانفجار
+  const rBase = radiusOf(f);
+  const haloGrad = ctx.createRadialGradient(0, 0, rBase * 0.8, 0, 0, rBase * 1.7);
+  haloGrad.addColorStop(0, 'rgba(255, 255, 255, 0.15)');
+  haloGrad.addColorStop(0.4, strain > 0.5 ? 'rgba(255, 90, 70, 0.25)' : 'rgba(140, 110, 255, 0.2)');
+  haloGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+  ctx.fillStyle = haloGrad;
+  ctx.beginPath();
+  ctx.arc(0, 0, rBase * 1.7, 0, TAU);
+  ctx.fill();
+
+  ctx.save();
+  ctx.rotate(angle);
+
+  const r = rBase;
+
+  // قص هندسي دائري دقيق ومحكم (يمنع أي بروز أو مثلثات غير طبيعية خارج الدائرة)
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(0, 0, r, 0, TAU);
+  ctx.clip();
+
+  // 1. نصف اليانج (الخلفية البيضاء المضيئة)
+  const whiteGrad = ctx.createRadialGradient(-shift, r * 0.35, r * 0.1, 0, 0, r * 1.3);
+  whiteGrad.addColorStop(0, '#ffffff');
+  whiteGrad.addColorStop(0.75, '#f4f6fa');
+  whiteGrad.addColorStop(1, '#e3e8f4');
+  ctx.fillStyle = whiteGrad;
+  ctx.fillRect(-r * 1.5, -r * 1.5, r * 3, r * 3);
+
+  // 2. نصف الين (الكتلة المظلمة مع المنحنى الانسيابي)
+  const darkGrad = ctx.createRadialGradient(shift, -r * 0.4, r * 0.1, shift, 0, r * 1.4);
+  darkGrad.addColorStop(0, '#040409');
+  darkGrad.addColorStop(0.7, '#0b0a17');
+  darkGrad.addColorStop(1, '#1a142e');
+
+  ctx.fillStyle = darkGrad;
+  ctx.beginPath();
+  ctx.moveTo(shift, -r);
+  const waveAmp = strain * 2.2 * Math.sin(t * 9);
+  ctx.arc(shift + waveAmp, -r / 2, r / 2, -Math.PI / 2, Math.PI / 2);
+  ctx.arc(shift - waveAmp, r / 2, r / 2, -Math.PI / 2, Math.PI / 2, true);
+  // إغلاق النصف المظلم بنصف قوس دائري خارجي تام
+  ctx.arc(0, 0, r * 1.2, Math.PI / 2, -Math.PI / 2, false);
+  ctx.closePath();
+  ctx.fill();
+
+  ctx.restore(); // إنهاء الـ clip الدائري
+
+  const eyeR = r * 0.115;
+  glowDisk(ctx, shift, -r * 0.5, eyeR, 'yang', 1, 1.8);
+  glowDisk(ctx, shift, r * 0.5, eyeR, 'yin', 1, 1.8);
+
+  ctx.restore();
+
+  ctx.strokeStyle = strain > 0.7 ? 'rgba(255, 70, 70, 0.9)' : 'rgba(220, 230, 255, 0.8)';
+  ctx.lineWidth = 1.0 + strain * 1.5;
+  ctx.beginPath();
+  ctx.arc(0, 0, r, 0, TAU);
+  ctx.stroke();
+
+  ctx.restore();
+}
+function drawMouseInteraction(ctx, mouse) {
+  if (!mouse || !mouse.active) return;
+  ctx.save();
+  const grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 45);
+  grad.addColorStop(0, 'rgba(120, 210, 255, 0.6)');
+  grad.addColorStop(0.4, 'rgba(90, 130, 255, 0.2)');
+  grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+  ctx.fillStyle = grad;
+  ctx.beginPath();
+  ctx.arc(mouse.x, mouse.y, 45, 0, TAU);
+  ctx.fill();
+
+  ctx.strokeStyle = 'rgba(180, 230, 255, 0.7)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.arc(mouse.x, mouse.y, 8, 0, TAU);
+  ctx.stroke();
+  ctx.restore();
+}
+function renderScene(ctx, time, modelOrFrame, { width = 900, height = 700, dpr = 1, reduced = false, mouse = null, isSandbox = false } = {}) {
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.fillStyle = '#05070f';
+  ctx.fillRect(0, 0, width, height);
+
+  const scale = Math.min(width / 440, height / 370);
+  ctx.save();
+  ctx.translate(width / 2, height / 2);
+  ctx.scale(scale, scale);
+
+  if (isSandbox) {
+    const f = modelOrFrame;
+    const strain = f.strain || 0;
+    const rBase = radiusOf(f);
+    const outsideEnergy = f.ruptured ? 24 : (f.envYin + f.envYang);
+
+    // 1. الخلفية الكونية الفضائية
+    drawCosmicBackdrop(ctx, time, outsideEnergy);
+
+    // 5. تأثيرات وضع الانفجار والتمزق الحرج (Rupture Mode Improvements)
+    if (f.ruptured) {
+      // 5.أ. صبغة الشاشة تتحول إلى الأحمر القاني الداكن (Screen tint shifts to deep red-black)
+      const tintIntensity = Math.min(1.0, f.ruptureAge * 2.5);
+      const tintPulse = 0.82 + 0.18 * Math.sin(time * 9.0);
+      ctx.save();
+      ctx.fillStyle = `rgba(38, 4, 12, ${0.46 * tintIntensity * tintPulse})`;
+      const maxDim = Math.max(width, height) * 2;
+      ctx.fillRect(-maxDim, -maxDim, maxDim * 2, maxDim * 2);
+      ctx.restore();
+
+      // 5.ب. موجات صدمة انفجارية متوسعة متعددة ومتلاشية (Expanding shockwave rings)
+      for (let w = 0; w < 3; w++) {
+        const wAge = f.ruptureAge - w * 0.42;
+        if (wAge > 0 && wAge < 2.6) {
+          const shockR = wAge * 155;
+          const shockFade = 1.0 - wAge / 2.6;
+          ctx.save();
+          ctx.strokeStyle = w === 0 
+            ? `rgba(255, 230, 200, ${0.9 * shockFade})`
+            : (w === 1 ? `rgba(255, 130, 60, ${0.75 * shockFade})` : `rgba(180, 80, 255, ${0.65 * shockFade})`);
+          ctx.lineWidth = Math.max(0.8, (4.2 - w * 1.1) * shockFade);
+          ctx.beginPath();
+          ctx.arc(0, 0, shockR, 0, TAU);
+          ctx.stroke();
+          ctx.restore();
+        }
+      }
+
+      // 5.ج. شحنات برق وتصدعات طاقية متفرعة من المركز (Lightning / crack lines radiating from center)
+      for (let b = 0; b < 6; b++) {
+        const boltSeed = Math.floor(time * 14) + b * 11;
+        const boltAngle = (b / 6) * TAU + Math.sin(b * 2.7 + Math.floor(time * 12)) * 0.35;
+        const boltLength = Math.min(250, 40 + ((boltSeed * 37) % 75) + f.ruptureAge * 60);
+        const segs = 7;
+        let lx = 0, ly = 0;
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(lx, ly);
+        for (let s = 1; s <= segs; s++) {
+          const frac = s / segs;
+          const segDist = frac * boltLength;
+          const perp = ((boltSeed * 17 + s * 29) % 23 - 11) * 1.5;
+          const perpAngle = boltAngle + Math.PI / 2;
+          lx = Math.cos(boltAngle) * segDist + Math.cos(perpAngle) * perp;
+          ly = Math.sin(boltAngle) * segDist + Math.sin(perpAngle) * perp;
+          ctx.lineTo(lx, ly);
+        }
+        const boltAlpha = Math.max(0, (0.55 + 0.45 * Math.sin(time * 42 + b * 9)) * Math.max(0, 1 - f.ruptureAge / 3.8));
+        if (boltAlpha > 0.02) {
+          ctx.strokeStyle = (b % 2 === 0) ? `rgba(215, 238, 255, ${boltAlpha})` : `rgba(255, 195, 120, ${boltAlpha})`;
+          ctx.lineWidth = 1.3;
+          ctx.stroke();
+        }
+        ctx.restore();
+      }
+
+      // 5.د. شظايا عنيفة مندفعة نحو الخارج مع ذيول متوهجة (Violent debris particles with trails)
+      for (let i = 0; i < 72; i++) {
+        const side = i % 2;
+        const pType = side ? 'yang' : 'yin';
+        const baseA = (i * 2.39996) % TAU;
+        const pSpeed = 65 + ((i * 43) % 130);
+        const dist = (f.ruptureAge * pSpeed) ** 0.93;
+        const spiral = Math.sin(i * 7.1) * 0.45;
+        const curA = baseA + spiral * Math.log(1 + f.ruptureAge * 3);
+        const px = Math.cos(curA) * dist;
+        const py = Math.sin(curA) * dist;
+        const pAlpha = Math.max(0, 1.0 - dist / 360);
+
+        if (pAlpha > 0.01) {
+          const prevDist = Math.max(0, dist - (12 + (i % 4) * 4));
+          const prevX = Math.cos(curA - spiral * 0.06) * prevDist;
+          const prevY = Math.sin(curA - spiral * 0.06) * prevDist;
+          ctx.save();
+          ctx.strokeStyle = side ? `rgba(255, 215, 130, ${pAlpha * 0.75})` : `rgba(180, 100, 255, ${pAlpha * 0.75})`;
+          ctx.lineWidth = 1.2 + (i % 3) * 0.5;
+          ctx.beginPath();
+          ctx.moveTo(prevX, prevY);
+          ctx.lineTo(px, py);
+          ctx.stroke();
+          ctx.restore();
+
+          glowDisk(ctx, px, py, 1.4 + (i % 3) * 0.6, pType, pAlpha, 1.8);
+        }
+      }
+    } else {
+      // 4. هالة التنفس الكونية النبضية (Breathing aura effect)
+      // تنفس هادئ عند 0.5Hz في التوازن، ويصبح سريعاً ومضطرباً مع تصاعد الإجهاد
+      const breathFreq = Math.PI * (1.0 + strain * 4.2);
+      const erratic = strain > 0.25 ? (Math.sin(time * 16.5) * 0.38 + Math.sin(time * 26.2) * 0.24) * strain : 0;
+      const breathPhase = time * breathFreq + erratic;
+      const breathPulse = Math.sin(breathPhase);
+      const auraScale = 1.0 + 0.12 * breathPulse + (strain > 0.65 ? (Math.random() - 0.5) * 0.08 : 0);
+      const auraR = rBase * 1.68 * auraScale;
+      const auraInnerR = rBase * 0.85;
+
+      const auraGrad = ctx.createRadialGradient(0, 0, auraInnerR, 0, 0, Math.max(auraInnerR + 1, auraR));
+      if (strain < 0.35) {
+        const a = 0.22 + 0.08 * breathPulse;
+        auraGrad.addColorStop(0, `rgba(150, 130, 255, ${a})`);
+        auraGrad.addColorStop(0.45, `rgba(75, 145, 255, ${a * 0.55})`);
+        auraGrad.addColorStop(1, 'rgba(10, 5, 30, 0)');
+      } else if (strain < 0.75) {
+        const a = 0.32 + 0.14 * breathPulse;
+        auraGrad.addColorStop(0, `rgba(255, 185, 65, ${a})`);
+        auraGrad.addColorStop(0.5, `rgba(255, 105, 35, ${a * 0.6})`);
+        auraGrad.addColorStop(1, 'rgba(60, 15, 0, 0)');
+      } else {
+        const a = 0.48 + 0.22 * breathPulse;
+        auraGrad.addColorStop(0, `rgba(255, 50, 40, ${a})`);
+        auraGrad.addColorStop(0.45, `rgba(220, 20, 70, ${a * 0.65})`);
+        auraGrad.addColorStop(1, 'rgba(80, 0, 10, 0)');
+      }
+      ctx.save();
+      ctx.fillStyle = auraGrad;
+      ctx.beginPath();
+      ctx.arc(0, 0, Math.max(1, auraR), 0, TAU);
+      ctx.fill();
+      ctx.restore();
+
+      // 1. حلقات مجال الطاقة الكونية النابضة (Pulsing energy field rings)
+      // 3 حلقات متحدة المركز تهتز بنعومة، وتتحول من البنفسجي الهادئ إلى الذهبي/الأحمر التحذيري
+      let ringR, ringG, ringB;
+      if (strain < 0.5) {
+        const tC = strain / 0.5;
+        ringR = Math.round(125 + (255 - 125) * tC);
+        ringG = Math.round(115 + (195 - 115) * tC);
+        ringB = Math.round(255 + (60 - 255) * tC);
+      } else {
+        const tC = (strain - 0.5) / 0.5;
+        ringR = 255;
+        ringG = Math.round(195 + (45 - 195) * tC);
+        ringB = Math.round(60 + (45 - 60) * tC);
+      }
+
+      const ringMultipliers = [1.25, 1.55, 1.90];
+      for (let k = 0; k < 3; k++) {
+        const ringBaseR = rBase * ringMultipliers[k];
+        const ringFreq = 1.2 + strain * 2.8 + k * 0.35;
+        const ringOsc = Math.sin(time * ringFreq + k * 1.5) * (2.2 + strain * 5.5 + k * 1.4);
+        const currR = Math.max(1, ringBaseR + ringOsc);
+        const ringAlpha = (0.22 + strain * 0.55) * (1.0 - k * 0.18);
+
+        ctx.save();
+        // هالة متوهجة خفيفة للحلقة
+        ctx.strokeStyle = `rgba(${ringR}, ${ringG}, ${ringB}, ${ringAlpha * 0.35})`;
+        ctx.lineWidth = 2.4 + strain * 2.0;
+        ctx.beginPath();
+        ctx.arc(0, 0, currR, 0, TAU);
+        ctx.stroke();
+
+        // حلقة متقطعة دوارة
+        ctx.rotate(time * (0.16 - k * 0.1) * (1.0 + strain * 1.5));
+        ctx.setLineDash([10 + k * 6, 8 + k * 4]);
+        ctx.strokeStyle = `rgba(${ringR}, ${ringG}, ${ringB}, ${ringAlpha})`;
+        ctx.lineWidth = 1.0 + strain * 1.6 + (2 - k) * 0.4;
+        ctx.beginPath();
+        ctx.arc(0, 0, currR, 0, TAU);
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      // 2. جزيئات الطاقة المدارية (Orbital energy particles - 64 جزيء)
+      // مدارات متعددة، ذيول واضحة، حجم ووميض متناسب مع الطاقة، وسرعات تتأثر بالإجهاد مع تسرب مسبق
+      const particleCount = 64;
+      const speedFactor = (f.speed !== null ? f.speed : 1.0) * (1.0 + strain * 1.4);
+
+      for (let i = 0; i < particleCount; i++) {
+        const tier = i % 3;
+        const baseOrbitR = rBase * (tier === 0 ? 1.26 : (tier === 1 ? 1.62 : 2.06)) + ((i * 19) % 17 - 8) * 0.8;
+        const tierSpeedRatio = tier === 0 ? 1.35 : (tier === 1 ? 1.0 : 0.72);
+
+        // تسرب مسبق للجزيئات نحو الخارج عند اشتداد الإجهاد
+        const isLeaker = (i % 4 === 0);
+        const leakDrift = (isLeaker && strain > 0.35) 
+          ? (strain ** 1.5) * (28 + (i % 7) * 16) * (0.8 + 0.2 * Math.sin(time * 4.0 + i))
+          : 0;
+        const currentR = Math.max(2, baseOrbitR + leakDrift);
+
+        const side = i % 2;
+        const type = side ? 'yang' : 'yin';
+        const energyVal = side ? f.yang : f.yin;
+        const avgEnergy = Math.max(0.1, f.total * 0.5);
+        const energyScale = Math.sqrt(Math.max(0.25, energyVal / avgEnergy));
+        const pSize = (1.2 + (i % 3) * 0.45) * energyScale;
+        const baseAlpha = clamp(0.35 + 0.42 * Math.sin(time * 3.2 + i * 1.1) + strain * 0.25, 0.2, 1.0);
+
+        const baseAngle = f.angle * tierSpeedRatio + (i / particleCount) * TAU + Math.sin(time * 1.8 + i) * 0.1;
+        const headX = Math.cos(baseAngle) * currentR;
+        const headY = Math.sin(baseAngle) * currentR;
+
+        // رسم ذيل الجزيء (3-4 trail segments)
+        if (!reduced) {
+          const trailSegs = 4;
+          const trailColor = (type === 'yin') ? '148, 92, 255' : '255, 226, 132';
+          for (let s = 1; s <= trailSegs; s++) {
+            const lagAngle = baseAngle - s * 0.055 * (tierSpeedRatio * 0.8 + 0.2);
+            const lagR = currentR - s * (isLeaker ? 1.4 : 0.35);
+            const segX = Math.cos(lagAngle) * lagR;
+            const segY = Math.sin(lagAngle) * lagR;
+            const prevLagAngle = baseAngle - (s - 1) * 0.055 * (tierSpeedRatio * 0.8 + 0.2);
+            const prevLagR = currentR - (s - 1) * (isLeaker ? 1.4 : 0.35);
+            const prevX = Math.cos(prevLagAngle) * prevLagR;
+            const prevY = Math.sin(prevLagAngle) * prevLagR;
+
+            const segAlpha = baseAlpha * (1.0 - s / (trailSegs + 1)) * 0.58;
+            ctx.save();
+            ctx.strokeStyle = `rgba(${trailColor}, ${segAlpha})`;
+            ctx.lineWidth = Math.max(0.6, pSize * (1.0 - s * 0.2));
+            ctx.beginPath();
+            ctx.moveTo(prevX, prevY);
+            ctx.lineTo(segX, segY);
+            ctx.stroke();
+            ctx.restore();
+          }
+        }
+
+        glowDisk(ctx, headX, headY, pSize, type, baseAlpha, 1.2 + strain * 0.8);
+      }
+    }
+
+    // رسم الجسد المركزي
+    drawBody(ctx, f, time, null, reduced, width, height);
+
+    // 3. مسارات تدفق الطاقة الانسيابية (Energy flow streamlines - 10 خطوط)
+    // قنوات طاقة تربط قطبي الين واليانج، متناغمة بانسيابية عند الاتزان، وتلتوي وتضطرب مع الإجهاد
+    if (!f.ruptured) {
+      const bodyAngle = reduced ? 0 : f.angle + JOIN_ANGLE;
+      const shift = visualShift(f);
+      const streamCount = 10;
+
+      ctx.save();
+      ctx.rotate(bodyAngle);
+
+      for (let k = 0; k < streamCount; k++) {
+        const spread = (k / (streamCount - 1) - 0.5) * 2; // من -1 إلى 1
+        const p0 = { x: shift + spread * (rBase * 0.34), y: -rBase * 0.52 };
+        const p3 = { x: shift - spread * (rBase * 0.34), y: rBase * 0.52 };
+
+        const sweep = Math.sin(time * 2.4 + k * 0.6) * 3.5;
+        const arch = (spread * rBase * 0.42) + (k % 2 === 0 ? rBase * 0.28 : -rBase * 0.28);
+        const p1 = { x: shift + arch + sweep, y: -rBase * 0.18 };
+        const p2 = { x: shift - arch - sweep, y: rBase * 0.18 };
+
+        // التواء واضطراب الخطوط عند تصاعد الإجهاد
+        if (strain > 0.05) {
+          const distortAmp = strain * rBase * 0.52;
+          const distortFreq = 4.2 + strain * 7.5;
+          p1.x += Math.sin(time * distortFreq + k * 1.7) * distortAmp;
+          p1.y += Math.cos(time * (distortFreq * 0.9) + k * 1.3) * (distortAmp * 0.42);
+          p2.x -= Math.cos(time * distortFreq + k * 1.5) * distortAmp;
+          p2.y += Math.sin(time * (distortFreq * 0.9) + k * 1.8) * (distortAmp * 0.42);
+        }
+
+        const flowGrad = ctx.createLinearGradient(p0.x, p0.y, p3.x, p3.y);
+        flowGrad.addColorStop(0, `rgba(255, 236, 175, ${0.46 + (1 - strain) * 0.34})`);
+        if (strain > 0.5) {
+          flowGrad.addColorStop(0.5, `rgba(255, 75, 65, ${0.62 + strain * 0.32})`);
+        } else {
+          flowGrad.addColorStop(0.5, `rgba(162, 142, 255, ${0.42 + (1 - strain) * 0.28})`);
+        }
+        flowGrad.addColorStop(1, `rgba(142, 85, 255, ${0.46 + (1 - strain) * 0.34})`);
+
+        ctx.strokeStyle = flowGrad;
+        ctx.lineWidth = 1.0 + (1 - Math.abs(spread) * 0.5) * 0.7 + strain * 0.7;
+        ctx.setLineDash([5, 9]);
+        ctx.lineDashOffset = -time * (24 + strain * 32) * (k % 2 === 0 ? 1 : -1);
+        ctx.beginPath();
+        ctx.moveTo(p0.x, p0.y);
+        ctx.bezierCurveTo(p1.x, p1.y, p2.x, p2.y, p3.x, p3.y);
+        ctx.stroke();
+      }
+
+      ctx.setLineDash([]);
+      ctx.restore();
+
+      // 6. بريق التناغم الماسي (Harmony sparkles)
+      // تظهر نجوماً ماسية وضاءة تتلألأ بهدوء حول الجسد عند التناغم الفائق (strain < 10%)
+      if (strain < 0.10) {
+        const harmonyFactor = (1.0 - strain / 0.10);
+        for (let j = 0; j < 20; j++) {
+          const spDist = rBase * (0.85 + ((j * 29) % 100) / 72);
+          const spAngle = (j * 2.39996) + time * 0.08 * (j % 2 === 0 ? 1 : -1);
+          const spX = Math.cos(spAngle) * spDist;
+          const spY = Math.sin(spAngle) * spDist;
+
+          const twinkle = Math.sin(time * 2.8 + j * 1.73);
+          if (twinkle > 0) {
+            const spAlpha = twinkle * harmonyFactor * 0.85;
+            const spSize = (2.2 + (j % 3) * 1.1) * (0.6 + 0.4 * twinkle);
+            const spColor = (j % 3 === 0) ? '#ffffff' : ((j % 3 === 1) ? '#ffe49e' : '#d8b4ff');
+
+            ctx.save();
+            ctx.fillStyle = spColor;
+            ctx.globalAlpha = spAlpha;
+            ctx.beginPath();
+            ctx.moveTo(spX, spY - spSize);
+            ctx.lineTo(spX + spSize * 0.28, spY - spSize * 0.28);
+            ctx.lineTo(spX + spSize, spY);
+            ctx.lineTo(spX + spSize * 0.28, spY + spSize * 0.28);
+            ctx.lineTo(spX, spY + spSize);
+            ctx.lineTo(spX - spSize * 0.28, spY + spSize * 0.28);
+            ctx.lineTo(spX - spSize, spY);
+            ctx.lineTo(spX - spSize * 0.28, spY - spSize * 0.28);
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
+          }
+        }
+      }
+    }
+
+    if (mouse && mouse.active) {
+      drawMouseInteraction(ctx, { x: (mouse.x - width / 2) / scale, y: (mouse.y - height / 2) / scale, active: true });
+    }
+
+    ctx.restore();
+    return f;
+  }
+
+  // نمط الدورة الكونية الأبدية
+  const outsideEnergy = time >= EXPLODE_TIME ? 24 : 0;
+  drawCosmicBackdrop(ctx, time, outsideEnergy);
+
+  // 1. رسم جزيئات الدورة الكونية اللانهائية المستمرة (88 جزيء يتدفق بانسيابية تامة)
+  for (let i = 0; i < 88; i++) {
+    const p = cyclicCosmicParticle(time, i);
+    if (!p) continue;
+    if (!reduced) {
+      radiantTrail(ctx, u => cyclicCosmicParticle(Math.max(0, u), i), time, p.type, 0.2, 1.1, 0.35);
+    }
+    glowDisk(ctx, p.x, p.y, p.r, p.type, p.alpha, p.glow);
+  }
+
+  // 2. رسم مرحلة التكوّن الأولي (0 - 9s)
+  if (time < FORMATION) {
+    drawBirth(ctx, time, reduced);
+  } else {
+    // 3. رسم مرحلة الجسد المركزي والدوران ثم الانفصال والتفكك
+    const f = modelOrFrame.sample(time - FORMATION);
+    drawBody(ctx, f, time, modelOrFrame, reduced, width, height);
+  }
+
+  // 4. رسم البذرتين الجديدتين أثناء ظهورهما بسلاسة في مرحلة الاستعداد للتجمع (19.5s - 24.0s)
+  if (time >= 19.5) {
+    for (let side = 0; side < 2; side++) {
+      const seed = seedPosition(time, side);
+      glowDisk(ctx, seed.x, seed.y, seed.r, side ? 'yin' : 'yang', seed.alpha, 2.0);
+    }
+  }
+
+  if (mouse && mouse.active) {
+    drawMouseInteraction(ctx, { x: (mouse.x - width / 2) / scale, y: (mouse.y - height / 2) / scale, active: true });
+  }
+
+  // شارة السرد اللحظي
+  if (time >= 19.5) {
+    ctx.save();
+    ctx.font = '11px "Segoe UI", Tahoma, sans-serif';
+    ctx.fillStyle = 'rgba(140, 220, 255, 0.85)';
+    ctx.textAlign = 'center';
+    ctx.fillText('✦ تستدير الطاقة في أرجاء الوجود وتتجاذب لتبدأ التجمع من جديد ✦', 0, 142);
+    ctx.restore();
+  }
+
+  ctx.restore();
+
+  // إرجاع حالة الطاقة
+  if (time < FORMATION) {
+    return { yin: 12 * (time / FORMATION), yang: 12 * (time / FORMATION), envYin: 12 - 12 * (time / FORMATION), envYang: 12 - 12 * (time / FORMATION), strain: 0, speed: null, broken: null };
+  } else {
+    return modelOrFrame.sample(time - FORMATION);
+  }
+}
+
+
+  // --- APP ---
+// app.js - المنسق الرئيسي للتجربة البصرية والتفاعلية
+const $ = id => document.getElementById(id);
+const canvas = $('world');
+const ctx = canvas.getContext('2d');
+
+let currentMode = 'cycle'; // 'cycle' | 'sandbox'
+let model = decorateModel(createModel('imbalance'));
+let sandboxState = createSandboxState();
+
+let time = 0;
+let playing = true;
+let rate = 1;
+let last = null;
+let raf = 0;
+let width = 0;
+let height = 0;
+let lastUI = -Infinity;
+let hasTriggeredMergeSound = false;
+let lastExplosionTrigger = false;
+let cycleCount = 1; // عداد الدورات الكونية اللانهائية
+
+const mouse = { x: 0, y: 0, active: false };
+const media = matchMedia('(prefers-reduced-motion: reduce)');
+
+// تحديث الواجهة في نمط الدورة الكونية الأبدية
+function updateCycleUI(f) {
+  let phase, story, num;
+  if (time < FORMATION) {
+    if (time < 0.5) {
+      phase = cycleCount > 1 ? `إعادة انبثاق البذرتين (دورة #${cycleCount})` : 'البذرتان الأوليتان';
+      num = '01';
+      story = cycleCount > 1 
+        ? `من سكون الوجود المحفوظ، انبعثت البذرتان من جديد لتبدآ دورة تكوّن كوني جديدة (دورة #${cycleCount}).` 
+        : 'نقطتان في الفراغ الكوني، وحولهما طاقة أزلية تنتظر التجمّع.';
+    } else if (time < 6.0) {
+      phase = 'تجمّع الطاقة المعكوسة';
+      num = '01';
+      story = 'البيضاء تجتذب الطاقة المظلمة؛ والنواة السوداء تجتذب الفوتونات المشعة في لولبيات كونية واردة.';
+    } else {
+      phase = 'التقارب والاندماج الأبدي';
+      num = '02';
+      story = 'تتقارب الكتلتان وتلتفّان في دوامة اندماجية، وكل نقطة تستقر في قلب النقيض.';
+    }
+  } else if (time < EXPLODE_TIME) {
+    num = '03';
+    if (time < 11.5) {
+      phase = 'كمال التوازن والتناغم';
+      story = 'اتزان مطلق وتناغم نقي؛ الدائرة تدور في هدوء كوني مهيب.';
+    } else {
+      phase = 'اختبار حدود التحمّل وتصاعد الإجهاد';
+      if (model.kind === 'imbalance') {
+        story = 'طاقة الين تنمو بمعدل أسرع؛ يتشوه المنحنى الفاصل وتتباطأ سرعة الدوران مع اقتراب الانفجار.';
+      } else if (model.kind === 'overload') {
+        story = 'دفعات طاقة فائقة أسرع من قدرة النظام على الاستيعاب؛ التوتر يقترب من الذروة.';
+      } else {
+        story = 'طاقة اليانج تغادر فجأة نحو الحافة؛ فيضطرب الاتزان ويتجه نحو التمزق.';
+      }
+    }
+  } else {
+    num = '04';
+    const breakAge = time - EXPLODE_TIME;
+    if (breakAge < 2.0) {
+      phase = 'الانفجار الكوني الهائل وانفصال الكتلتين';
+      story = 'دوي انفجار كوني هائل! تتمزق الدائرة وتنفصل كتلتا الين واليانج وتتباعدان بقوة دفع عاتية.';
+    } else if (time < 18.5) {
+      phase = 'انتشار الطاقة وتفككها في أرجاء الوجود';
+      story = 'تتلاشى الكتلتان وتتفتت حوافهما متحولة إلى أوتار ضوء ومادة مظلمة عائدة إلى فضاء الوجود الأبدي.';
+    } else {
+      phase = 'الاستدارة والتجاذب وبدء التجمّع الأبدي';
+      story = 'تتباطأ جزيئات الطاقة عند أقصى المدى، وتستدير بنعومة لتتجاذب من جديد نحو مدارات البذور المتجددة.';
+    }
+  }
+
+  $('stamp').textContent = '00:' + String(Math.floor(time)).padStart(2, '0') + ' / 00:24';
+  $('time-label').textContent = time.toFixed(1) + 's';
+  $('timeline').value = time;
+
+  $('phase').textContent = phase;
+  $('stage-number').textContent = num;
+  if ($('story').textContent !== story) {
+    $('story').textContent = story;
+  }
+
+  $('play-text').textContent = playing ? 'إيقاف مؤقت' : 'متابعة الدورة الكونية';
+  $('play-icon').textContent = playing ? '⏸' : '▶';
+
+  document.querySelectorAll('[data-jump]').forEach(b => {
+    b.setAttribute('aria-pressed', String(Number(b.dataset.phase) === Number(num)));
+  });
+
+  updateTelemetryNumbers(f);
+}
+
+// تحديث الواجهة في نمط المختبر التفاعلي المستقر (Sandbox UI)
+function updateSandboxUI(f) {
+  let phase, story;
+  const strainPct = Math.min(100, Math.round(f.strain * 100));
+  const harmonyPct = Math.max(0, 100 - strainPct);
+
+  // تحديث مؤشر التناغم الكوني الحي
+  const gauge = $('harmony-gauge');
+  const harmonyLabel = $('harmony-label');
+  const harmonyPctEl = $('harmony-pct');
+  const harmonyFill = $('harmony-fill');
+  const harmonyIcon = $('harmony-icon');
+
+  if (gauge && harmonyLabel && harmonyPctEl && harmonyFill) {
+    gauge.classList.remove('harmony-perfect', 'harmony-warning', 'harmony-danger');
+
+    if (f.ruptured) {
+      gauge.classList.add('harmony-danger');
+      harmonyLabel.textContent = 'تمزق وانهيار كوني حرج (0% تناغم)';
+      harmonyPctEl.textContent = '0%';
+      harmonyFill.style.width = '0%';
+      if (harmonyIcon) harmonyIcon.textContent = '💥';
+      harmonyPctEl.style.color = 'var(--crimson)';
+    } else if (harmonyPct >= 85) {
+      gauge.classList.add('harmony-perfect');
+      harmonyLabel.textContent = 'اتزان مقدس وتناغم كوني نقي';
+      harmonyPctEl.textContent = harmonyPct + '%';
+      harmonyFill.style.width = harmonyPct + '%';
+      if (harmonyIcon) harmonyIcon.textContent = '☯';
+      harmonyPctEl.style.color = 'var(--cyan)';
+    } else if (harmonyPct >= 45) {
+      gauge.classList.add('harmony-warning');
+      harmonyLabel.textContent = 'تناغم جزئي واختلال في التكافؤ';
+      harmonyPctEl.textContent = harmonyPct + '%';
+      harmonyFill.style.width = harmonyPct + '%';
+      if (harmonyIcon) harmonyIcon.textContent = '⚖️';
+      harmonyPctEl.style.color = 'var(--gold)';
+    } else {
+      gauge.classList.add('harmony-danger');
+      harmonyLabel.textContent = 'إجهاد حرج وتهديد بالتمزق الفوري';
+      harmonyPctEl.textContent = harmonyPct + '%';
+      harmonyFill.style.width = harmonyPct + '%';
+      if (harmonyIcon) harmonyIcon.textContent = '⚡';
+      harmonyPctEl.style.color = 'var(--crimson)';
+    }
+  }
+
+  if (f.ruptured) {
+    phase = '💥 انهيار وتمزق كوني (Critical Rupture)';
+    story = `بلغ إجهاد التماسك 100%! تمزقت الدائرة الكونية وانفصلت كتلتا الين واليانج بفعل اختلال التكافؤ الشديد (${f.yin.toFixed(1)} مقابل ${f.yang.toFixed(1)}). اضغط استعادة الاتزان أو حرّك السلايدر لإعادة التئام الدائرة.`;
+    $('rupture-banner').style.display = 'flex';
+  } else {
+    $('rupture-banner').style.display = 'none';
+
+    if (f.strain < 0.15) {
+      phase = '☯ اتزان مقدس وتناغم نقي';
+      story = `طاقتا الين واليانج متكافئتان بدقة (${f.yin.toFixed(1)} : ${f.yang.toFixed(1)}). الدائرة تدور بسكينة تامة وبلا إجهاد (${strainPct}%).`;
+    } else if (f.strain < 0.45) {
+      const isYinHeavy = f.yin > f.yang;
+      phase = isYinHeavy ? '🌑 ميل وتوسع لطاقة الين' : '🌕 ميل وتوهج لطاقة اليانج';
+      story = isYinHeavy
+        ? `الكتلة المظلمة تتوسع وتضغط على النصف المضيء؛ ينحني المنحنى الفاصل برفق ويبدأ الإجهاد بالارتفاع (${strainPct}%).`
+        : `النصف المضيء يتوهج بكثافة عالية؛ يزيح مركز الثقل ويتشكل المنحنى تحت تأثير الزيادة (${strainPct}%).`;
+    } else if (f.strain < 0.75) {
+      phase = '⚠️ توتر هندسي واضطراب في الدوران';
+      story = `اختلال ملحوظ في التكافؤ (${f.yin.toFixed(1)} مقابل ${f.yang.toFixed(1)})؛ إجهاد التماسك ارتفع إلى (${strainPct}%). الدوران يتباطأ وتظهر تموجات على الحواف.`;
+    } else {
+      phase = '⚡ إجهاد حرج وخطر انفجار وشيك!';
+      story = `الإجهاد بلغ حداً حرجاً (${strainPct}%)! ارتعاشات كهربائية تهز المحيط الكوني، وأي زيادة طفيفة ستؤدي إلى الانفجار الفوري.`;
+    }
+  }
+
+  $('phase').textContent = phase;
+  $('stage-number').textContent = '🎛';
+  $('stamp').textContent = `YIN ${f.yin.toFixed(1)} · YANG ${f.yang.toFixed(1)}`;
+  if ($('story').textContent !== story) {
+    $('story').textContent = story;
+  }
+
+  // تحديث أرقام قنوات السلايدر
+  $('val-yin').textContent = f.yin.toFixed(1);
+  $('val-yang').textContent = f.yang.toFixed(1);
+
+  // مزامنة السلايدر إذا كان التناغم التلقائي مفعلاً
+  if (sandboxState.autoHarmonize) {
+    $('slider-yin').value = f.yin;
+    $('slider-yang').value = f.yang;
+  }
+
+  updateTelemetryNumbers(f);
+}
+
+// تحديث شريط القياسات الموحد (Telemetry HUD)
+function updateTelemetryNumbers(f) {
+  $('inside-yin').textContent = f.yin.toFixed(1);
+  $('inside-yang').textContent = f.yang.toFixed(1);
+  $('outside-yin').textContent = f.envYin.toFixed(1);
+  $('outside-yang').textContent = f.envYang.toFixed(1);
+
+  const strainPct = Math.min(100, Math.round(f.strain * 100));
+  $('strain-value').textContent = strainPct + '%';
+  $('strain-fill').style.width = strainPct + '%';
+  $('strain-meter').setAttribute('aria-valuenow', String(strainPct));
+
+  if (strainPct > 70) {
+    $('strain-value').style.color = 'var(--crimson)';
+  } else if (strainPct > 30) {
+    $('strain-value').style.color = 'var(--gold)';
+  } else {
+    $('strain-value').style.color = 'var(--cyan)';
+  }
+
+  if (f.speed === null || f.total < 0.2) {
+    $('spin-value').textContent = '— (سكون تام)';
+  } else {
+    const rpm = Math.round(f.speed * 60);
+    $('spin-value').textContent = `${Math.round(f.speed * 100)}% (${rpm} د/د)`;
+  }
+}
+
+function render(force = false) {
+  if (currentMode === 'cycle') {
+    const f = renderScene(ctx, time, model, {
+      width,
+      height,
+      dpr: Math.min(window.devicePixelRatio || 1, 2.5),
+      reduced: media.matches,
+      mouse,
+      isSandbox: false
+    });
+
+    if (playing) {
+      if (time >= FORMATION && !hasTriggeredMergeSound && time < FORMATION + 1.0) {
+        sound.playCelestialMerge();
+        hasTriggeredMergeSound = true;
+      }
+      if (time >= EXPLODE_TIME && !lastExplosionTrigger && time < EXPLODE_TIME + 1.5) {
+        sound.playCosmicExplosion();
+        lastExplosionTrigger = true;
+      }
+      sound.update(time, f, playing);
+    }
+
+    if (force || Math.abs(time - lastUI) > 0.08) {
+      updateCycleUI(f);
+      lastUI = time;
+    }
+  } else {
+    // نمط المختبر التفاعلي المستقر
+    const f = renderScene(ctx, time, sandboxState.lastFrame || sandboxState, {
+      width,
+      height,
+      dpr: Math.min(window.devicePixelRatio || 1, 2.5),
+      reduced: media.matches,
+      mouse,
+      isSandbox: true
+    });
+
+    if (f.justRuptured) {
+      sound.playCosmicExplosion();
+    }
+    sound.update(time, f, true);
+
+    if (force || Math.abs(time - lastUI) > 0.08) {
+      updateSandboxUI(f);
+      lastUI = time;
+    }
+  }
+}
+
+function resize() {
+  const b = canvas.getBoundingClientRect();
+  width = b.width;
+  height = b.height;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+  canvas.width = Math.round(width * dpr);
+  canvas.height = Math.round(height * dpr);
+  render(true);
+}
+
+function stop() {
+  playing = false;
+  cancelAnimationFrame(raf);
+  last = null;
+  sound.update(time, { speed: 0, strain: 0 }, false);
+  render(true);
+}
+
+function tick(now) {
+  if (!playing && currentMode === 'cycle') return;
+  const dt = last !== null ? Math.min((now - last) / 1000, 0.1) : 0.016;
+  last = now;
+
+  time += dt * rate;
+
+  if (currentMode === 'cycle') {
+    // دورة 24 ثانية لانهائية مستمرة
+    if (time >= DURATION) {
+      time = 0;
+      cycleCount++;
+      hasTriggeredMergeSound = false;
+      lastExplosionTrigger = false;
+
+      const badge = $('cycle-badge');
+      const numEl = $('cycle-num');
+      if (badge && numEl) {
+        numEl.textContent = '#' + String(cycleCount).padStart(2, '0');
+        badge.classList.add('pulsing');
+        setTimeout(() => badge.classList.remove('pulsing'), 1800);
+      }
+      sound.playCosmicRebirth();
+    }
+  } else {
+    // تحديث فيزياء المختبر التفاعلي
+    const f = updateSandboxPhysics(sandboxState, dt * rate);
+    sandboxState.lastFrame = f;
+  }
+
+  render(false);
+  raf = requestAnimationFrame(tick);
+}
+
+function start() {
+  sound.resume();
+  playing = true;
+  last = null;
+  raf = requestAnimationFrame(tick);
+  render(true);
+}
+
+function seek(value) {
+  stop();
+  time = Math.max(0, Math.min(DURATION, value));
+  if (time < FORMATION) hasTriggeredMergeSound = false;
+  if (time < EXPLODE_TIME) lastExplosionTrigger = false;
+  render(true);
+}
+
+// تبديل الأنماط بين الدورة الأبدية والمختبر التفاعلي
+function setMode(mode) {
+  currentMode = mode;
+  sound.resume();
+
+  if (mode === 'cycle') {
+    $('tab-cycle').classList.add('active');
+    $('tab-sandbox').classList.remove('active');
+    $('cycle-transport').style.display = 'block';
+    $('sandbox-transport').style.display = 'none';
+    $('scenario-section').style.display = 'block';
+    $('sandbox-laws-section').style.display = 'none';
+    start();
+  } else {
+    $('tab-sandbox').classList.add('active');
+    $('tab-cycle').classList.remove('active');
+    $('cycle-transport').style.display = 'none';
+    $('sandbox-transport').style.display = 'flex';
+    $('scenario-section').style.display = 'none';
+    $('sandbox-laws-section').style.display = 'block';
+
+    // إعادة تهيئة حالة المختبر المستقرة
+    const f = updateSandboxPhysics(sandboxState, 0.016);
+    sandboxState.lastFrame = f;
+    playing = true;
+    start();
+  }
+  render(true);
+}
+
+// أحداث تبديل النمط
+$('tab-cycle').addEventListener('click', () => setMode('cycle'));
+$('tab-sandbox').addEventListener('click', () => setMode('sandbox'));
+
+// أحداث سلايدرات المختبر التفاعلي
+$('slider-yin').addEventListener('input', e => {
+  sound.resume();
+  sandboxState.targetYin = Number(e.target.value);
+  $('toggle-harmonize').checked = false;
+  sandboxState.autoHarmonize = false;
+  render(true);
+});
+
+$('slider-yang').addEventListener('input', e => {
+  sound.resume();
+  sandboxState.targetYang = Number(e.target.value);
+  $('toggle-harmonize').checked = false;
+  sandboxState.autoHarmonize = false;
+  render(true);
+});
+
+// أزرار الزيادة والنقصان السريعة (+2 / -2)
+$('nudge-yin-down').addEventListener('click', () => {
+  sound.resume();
+  const val = Math.max(0, sandboxState.targetYin - 2);
+  sandboxState.targetYin = val;
+  $('slider-yin').value = val;
+  $('toggle-harmonize').checked = false;
+  sandboxState.autoHarmonize = false;
+  render(true);
+});
+
+$('nudge-yin-up').addEventListener('click', () => {
+  sound.resume();
+  const val = Math.min(30, sandboxState.targetYin + 2);
+  sandboxState.targetYin = val;
+  $('slider-yin').value = val;
+  $('toggle-harmonize').checked = false;
+  sandboxState.autoHarmonize = false;
+  render(true);
+});
+
+$('nudge-yang-down').addEventListener('click', () => {
+  sound.resume();
+  const val = Math.max(0, sandboxState.targetYang - 2);
+  sandboxState.targetYang = val;
+  $('slider-yang').value = val;
+  $('toggle-harmonize').checked = false;
+  sandboxState.autoHarmonize = false;
+  render(true);
+});
+
+$('nudge-yang-up').addEventListener('click', () => {
+  sound.resume();
+  const val = Math.min(30, sandboxState.targetYang + 2);
+  sandboxState.targetYang = val;
+  $('slider-yang').value = val;
+  $('toggle-harmonize').checked = false;
+  sandboxState.autoHarmonize = false;
+  render(true);
+});
+
+// الأوضاع المسبقة الجاهزة
+document.querySelectorAll('.preset-chip').forEach(btn => {
+  btn.addEventListener('click', () => {
+    sound.resume();
+    const y = Number(btn.dataset.yin);
+    const a = Number(btn.dataset.yang);
+    sandboxState.targetYin = y;
+    sandboxState.targetYang = a;
+    $('slider-yin').value = y;
+    $('slider-yang').value = a;
+    $('toggle-harmonize').checked = false;
+    sandboxState.autoHarmonize = false;
+    sound.playElectricZap();
+    render(true);
+  });
+});
+
+// استعادة الاتزان المقدس (12:12)
+function restoreSacredBalance() {
+  sound.resume();
+  sandboxState.targetYin = 12.0;
+  sandboxState.targetYang = 12.0;
+  sandboxState.yin = 12.0;
+  sandboxState.yang = 12.0;
+  sandboxState.ruptured = false;
+  sandboxState.ruptureAge = 0;
+  $('slider-yin').value = 12.0;
+  $('slider-yang').value = 12.0;
+  $('toggle-harmonize').checked = false;
+  sandboxState.autoHarmonize = false;
+  sound.playCelestialMerge();
+  render(true);
+}
+
+$('btn-reset-balance').addEventListener('click', restoreSacredBalance);
+$('btn-restore-rupture').addEventListener('click', restoreSacredBalance);
+
+// التناغم الذاتي التلقائي
+$('toggle-harmonize').addEventListener('change', e => {
+  sound.resume();
+  sandboxState.autoHarmonize = e.target.checked;
+  if (e.target.checked) {
+    sound.playElectricZap();
+  }
+});
+
+// Mouse / Touch Gravity Well
+canvas.addEventListener('mousemove', e => {
+  const rect = canvas.getBoundingClientRect();
+  mouse.x = e.clientX - rect.left;
+  mouse.y = e.clientY - rect.top;
+  mouse.active = true;
+  if (!playing) render(true);
+});
+
+canvas.addEventListener('mouseleave', () => {
+  mouse.active = false;
+  if (!playing) render(true);
+});
+
+canvas.addEventListener('click', () => {
+  sound.resume();
+  sound.playElectricZap();
+});
+
+canvas.addEventListener('touchmove', e => {
+  if (e.touches.length > 0) {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.touches[0].clientX - rect.left;
+    mouse.y = e.touches[0].clientY - rect.top;
+    mouse.active = true;
+    if (!playing) render(true);
+  }
+}, { passive: true });
+
+canvas.addEventListener('touchend', () => {
+  mouse.active = false;
+});
+
+$('play').addEventListener('click', () => {
+  sound.resume();
+  playing ? stop() : start();
+});
+
+$('replay').addEventListener('click', () => {
+  sound.resume();
+  stop();
+  time = 0;
+  cycleCount = 1;
+  const numEl = $('cycle-num');
+  if (numEl) numEl.textContent = '#01';
+  hasTriggeredMergeSound = false;
+  lastExplosionTrigger = false;
+  start();
+});
+
+$('timeline').addEventListener('input', e => {
+  seek(Number(e.target.value));
+});
+
+$('rate').addEventListener('change', e => {
+  rate = Number(e.target.value);
+});
+
+$('sound-toggle').addEventListener('click', () => {
+  sound.resume();
+  const isMuted = sound.toggleMute();
+  const btn = $('sound-toggle');
+  if (isMuted) {
+    btn.classList.add('muted');
+    $('sound-text').textContent = 'كتم الصوت';
+  } else {
+    btn.classList.remove('muted');
+    $('sound-text').textContent = 'الصوت مفعل';
+  }
+});
+
+document.querySelectorAll('input[name=scenario]').forEach(input => {
+  input.addEventListener('change', () => {
+    stop();
+    model = decorateModel(createModel(input.value));
+    time = 0;
+    hasTriggeredMergeSound = false;
+    lastExplosionTrigger = false;
+    render(true);
+  });
+});
+
+document.querySelectorAll('[data-jump]').forEach(button => {
+  button.addEventListener('click', () => {
+    sound.resume();
+    const jumpVal = button.dataset.jump;
+    if (jumpVal === 'shed') {
+      seek(EXPLODE_TIME + 0.1);
+    } else {
+      seek(Number(jumpVal));
+    }
+  });
+});
+
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    stop();
+  }
+});
+
+media.addEventListener?.('change', () => render(true));
+window.addEventListener('resize', resize);
+
+new ResizeObserver(resize).observe(canvas);
+resize();
+start();
+
+})();
+  </script>
+</body>
+</html>
