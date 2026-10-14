@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#05070f">
+  <meta name="description" content="تجربة كونية بصرية وتفاعلية فائقة لتكوّن الين واليانج وحفظ الطاقة والتوازن في الوجود.">
+  <title>الوجود — التجربة الكونية الفائقة للين واليانج</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- شريط العنوان العلوي -->
+  <header class="header">
+    <a class="brand" href="./">
+      <span class="brand-mark" aria-hidden="true">☯</span>
+      <div class="brand-text">
+        <h1>الوجود الفائق</h1>
+        <small>محاكاة التكوّن، الطاقة، والاتزان الكوني</small>
+      </div>
+    </a>
+    
+    <div class="header-actions">
+      <!-- عداد الدورات الكونية الأبدية -->
+      <div id="cycle-badge" class="cycle-badge" title="الدورة الكونية الأبدية تتكرر بلا نهاية">
+        <span>دورة كونيّة</span>
+        <b id="cycle-num">#01</b>
+        <span style="color: var(--cyan); font-size: 14px;">♾</span>
+      </div>
+
+      <!-- زر تفعيل/كتم الصوت الإجرائي -->
+      <button id="sound-toggle" class="sound-btn" type="button" aria-label="التحكم بالصوت الكوني">
+        <div class="sound-bars">
+          <span></span><span></span><span></span>
+        </div>
+        <span id="sound-text">الصوت مفعل</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- المحتوى الرئيسي -->
+  <main>
+    <div class="intro">
+      <div>
+        <span class="eyebrow">من نقطتين، ينبثق الكون</span>
+        <h2>كل طرف يحمل في جوهره بداية الآخر.</h2>
+      </div>
+      <p>
+        نقطة تبتلع نقيضها في لولب طاقة أزلي. كتلتان تتقاربان حتى التمازج المطلق،
+        ودائرة يحفظها الاتزان وما يخرج منها يبقى خالداً في الوجود.
+      </p>
+    </div>
+
+    <!-- شريط اختيار النمط: الدورة الأبدية أو المختبر التفاعلي المستقر -->
+    <div class="mode-switch-bar" role="tablist" aria-label="أنماط المحاكاة">
+      <button id="tab-cycle" class="mode-tab active" role="tab" aria-selected="true" type="button">
+        <span>♾</span>
+        <span>الدورة الكونية الأبدية</span>
+      </button>
+      <button id="tab-sandbox" class="mode-tab" role="tab" aria-selected="false" type="button">
+        <span>🎛</span>
+        <span>المختبر التفاعلي المستقر</span>
+      </button>
+    </div>
+
+    <div class="workspace">
+      <!-- قسم المحاكاة الرئيسي والشاشة -->
+      <section class="experiment glass" aria-label="محاكاة الطاقة الكونية">
+        <div class="stage-head">
+          <div class="live-badge">
+            <i></i>
+            <span id="phase">البذرتان الأوليتان</span>
+          </div>
+          <span id="stamp" class="mono">00:00 / 00:24</span>
+        </div>
+
+        <div class="canvas-wrap">
+          <canvas id="world" role="img" aria-label="محاكاة الين واليانج الكونية"></canvas>
+          <span class="interactive-hint">✦ حرّك المؤشر للتفاعل مع حقل الجاذبية</span>
+          <span class="field-label">بيئة الوجود / الفراغ الكوني</span>
+          <span class="field-coordinate mono">YIN · YANG · FLUX</span>
+        </div>
+
+        <!-- السرد الفلسفي الحي للمرحلة الحالية -->
+        <div class="caption">
+          <span id="stage-number" class="stage-num">01</span>
+          <p id="story" aria-live="polite">نقطتان في الفراغ الكوني، وحولهما طاقة أزلية تنتظر التجمّع.</p>
+        </div>
+
+        <!-- 1. شريط التحكم الزمني (نمط الدورة الكونية) -->
+        <div id="cycle-transport" class="transport">
+          <div class="timeline-row">
+            <label for="timeline">الزمن الكوني المنساب</label>
+            <span id="time-label" class="mono">0.0s</span>
+          </div>
+
+          <input id="timeline" type="range" min="0" max="24" step="0.01" value="0" aria-label="شريط زمن التجربة" dir="ltr">
+
+          <!-- أزرار القفز السريع للمراحل -->
+          <div class="phase-jumps" aria-label="الانتقال السريع بين مراحل التكوّن">
+            <button type="button" data-jump="0.1" data-phase="1" aria-pressed="true">البداية</button>
+            <button type="button" data-jump="2.8" data-phase="1" aria-pressed="false">تجمّع الطاقة</button>
+            <button type="button" data-jump="7.2" data-phase="2" aria-pressed="false">الاندماج الأبدي</button>
+            <button type="button" data-jump="9.8" data-phase="3" aria-pressed="false">كمال التوازن</button>
+            <button type="button" data-jump="shed" data-phase="4" aria-pressed="false">الانهيار والعودة للكون</button>
+          </div>
+
+          <!-- أزرار التشغيل والسرعة -->
+          <div class="transport-buttons">
+            <div class="btn-group">
+              <button id="play" class="btn btn-primary" type="button">
+                <span id="play-icon" aria-hidden="true">▶</span>
+                <span id="play-text">بدء التكوّن الكوني</span>
+              </button>
+              <button id="replay" class="btn btn-secondary" type="button" title="إعادة التجربة من البداية">
+                <span>↺ إعادة</span>
+              </button>
+            </div>
+
+            <label class="rate-select">
+              <span>سرعة المحاكاة</span>
+              <select id="rate" aria-label="سرعة العرض">
+                <option value="0.5">0.5×</option>
+                <option value="1" selected>1.0×</option>
+                <option value="1.5">1.5×</option>
+                <option value="2">2.0×</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <!-- 2. منصة التحكم التفاعلية للمختبر المستقر (Sandbox Deck) -->
+        <div id="sandbox-transport" class="transport sandbox-deck" style="display: none;">
+          <!-- تنبيه الانفجار والتمزق الكوني -->
+          <div id="rupture-banner" class="rupture-banner" style="display: none;">
+            <div class="rupture-banner-text">
+              <strong>⚠️ حدث تمزق كوني حرج (100% إجهاد)!</strong>
+              <span>تجاوز النظام حد الاستيعاب وانفصلت الكتلتان؛ استعد التوازن لإعادة بناء الدائرة.</span>
+            </div>
+            <button id="btn-restore-rupture" class="btn-restore" type="button">↺ استعادة الاتزان المقدس</button>
+          </div>
+          <!-- مؤشر التناغم الكوني الحي (Live Harmony Gauge) -->
+          <div id="harmony-gauge" class="harmony-gauge-container">
+            <div class="harmony-gauge-header">
+              <span id="harmony-icon" class="harmony-gauge-icon">☯</span>
+              <span id="harmony-label" class="harmony-gauge-label">اتزان مقدس</span>
+              <span id="harmony-pct" class="harmony-gauge-pct">100%</span>
+            </div>
+            <div class="harmony-gauge-track">
+              <div id="harmony-fill" class="harmony-gauge-fill" style="width: 100%"></div>
+            </div>
+          </div>
+
+          <!-- سلايدرات التحكم في الين واليانج -->
+          <div class="channels-grid">
+            <!-- قناة الين -->
+            <div class="channel-card yin-channel">
+              <div class="channel-header">
+                <div class="channel-title">
+                  <span style="color: var(--violet); font-size: 16px;">🌑</span>
+                  <span>طاقة الين (Yin)</span>
+                </div>
+                <span id="val-yin" class="channel-val-badge">12.0</span>
+              </div>
+              <div class="channel-controls-row">
+                <button id="nudge-yin-down" class="nudge-btn" type="button" title="إنقاص الين">-2</button>
+                <input id="slider-yin" type="range" min="0" max="30" step="0.5" value="12" aria-label="مقدار طاقة الين" dir="ltr">
+                <button id="nudge-yin-up" class="nudge-btn" type="button" title="زيادة الين">+2</button>
+              </div>
+            </div>
+
+            <!-- قناة اليانج -->
+            <div class="channel-card yang-channel">
+              <div class="channel-header">
+                <div class="channel-title">
+                  <span style="color: var(--gold); font-size: 16px;">🌕</span>
+                  <span>طاقة اليانج (Yang)</span>
+                </div>
+                <span id="val-yang" class="channel-val-badge">12.0</span>
+              </div>
+              <div class="channel-controls-row">
+                <button id="nudge-yang-down" class="nudge-btn" type="button" title="إنقاص اليانج">-2</button>
+                <input id="slider-yang" type="range" min="0" max="30" step="0.5" value="12" aria-label="مقدار طاقة اليانج" dir="ltr">
+                <button id="nudge-yang-up" class="nudge-btn" type="button" title="زيادة اليانج">+2</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- أوضاع كونية مسبقة -->
+          <div class="presets-bar">
+            <span class="presets-label">أوضاع كونيّة جاهزة:</span>
+            <button class="preset-chip" type="button" data-yin="12" data-yang="12">☯ اتزان مقدس (12:12)</button>
+            <button class="preset-chip" type="button" data-yin="22" data-yang="6">🌑 طغيان الين (22:6)</button>
+            <button class="preset-chip" type="button" data-yin="6" data-yang="22">🌕 طغيان اليانج (6:22)</button>
+            <button class="preset-chip" type="button" data-yin="26" data-yang="26">⚡ حمل فائق (26:26)</button>
+            <button class="preset-chip danger" type="button" data-yin="30" data-yang="1">💥 تمزق وانفجار (30:1)</button>
+            <button class="preset-chip" type="button" data-yin="3" data-yang="3">🌀 سكون الفراغ (3:3)</button>
+          </div>
+
+          <!-- خيارات المختبر وأزرار الضبط -->
+          <div class="sandbox-actions">
+            <label class="harmonize-toggle" title="عند التفعيل، يتكيف الطرف الآخر تلقائياً لاستعادة التوازن الأبدي">
+              <input id="toggle-harmonize" type="checkbox">
+              <span>تفعيل قانون التناغم الذاتي (Auto-Harmonize)</span>
+            </label>
+            <button id="btn-reset-balance" class="btn btn-secondary" type="button">
+              <span>↺ إعادة ضبط الاتزان (12:12)</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- اللوحة الجانبية: السيناريوهات وقياسات الطاقة الحية -->
+      <aside class="panel glass">
+        <!-- 1. قسم السيناريوهات (في نمط الدورة الكونية) -->
+        <div id="scenario-section" class="panel-section">
+          <span class="eyebrow">بعد الاندماج (9s+)</span>
+          <h3>اختبر حدود التوازن</h3>
+          <fieldset class="scenarios" style="border:0; padding:0; margin:0;">
+            <legend class="sr-only">اختر سيناريو تدفق الطاقة</legend>
+
+            <label class="scenario-card">
+              <input type="radio" name="scenario" value="imbalance" checked>
+              <span class="scenario-num">01</span>
+              <div class="scenario-content">
+                <strong>زيادة غير متساوية</strong>
+                <small>طاقة الين تنمو أسرع مما يشوه الاتزان.</small>
+              </div>
+              <i class="scenario-indicator"></i>
+            </label>
+
+            <label class="scenario-card">
+              <input type="radio" name="scenario" value="overload">
+              <span class="scenario-num">02</span>
+              <div class="scenario-content">
+                <strong>أسرع من الاستيعاب</strong>
+                <small>دفعات شحن فائقة بلا زمن كافٍ للتكيف.</small>
+              </div>
+              <i class="scenario-indicator"></i>
+            </label>
+
+            <label class="scenario-card">
+              <input type="radio" name="scenario" value="loss">
+              <span class="scenario-num">03</span>
+              <div class="scenario-content">
+                <strong>فقد مفاجئ (تمزّق)</strong>
+                <small>اليانج يهرب نحو الفضاء الخارجي فجأة.</small>
+              </div>
+              <i class="scenario-indicator"></i>
+            </label>
+          </fieldset>
+        </div>
+
+        <!-- 2. قسم القوانين الكونية الحية (في نمط المختبر المستقر) -->
+        <div id="sandbox-laws-section" class="panel-section" style="display: none;">
+          <span class="eyebrow">قوانين الفيزياء الكونية</span>
+          <h3>قوانين الاتزان الفعّالة</h3>
+          <div style="display: flex; flex-direction: column; gap: 10px; font-size: 12.5px; color: var(--text-muted);">
+            <div style="background: rgba(255,255,255,0.03); padding: 8px 12px; border-radius: 8px; border-right: 2px solid var(--cyan);">
+              <b style="color: #fff;">قانون التكافؤ:</b> عندما تتساوى طاقتا الين واليانج ينعدم الإجهاد ويدور الكون في تناغم مطلق.
+            </div>
+            <div style="background: rgba(255,255,255,0.03); padding: 8px 12px; border-radius: 8px; border-right: 2px solid var(--gold);">
+              <b style="color: #fff;">قانون التشوّه الهندسي:</b> غلبة أي طرف تشوه المنحنى الفاصل وتثقل الدوران وتزيح مركز الثقل.
+            </div>
+            <div style="background: rgba(255,255,255,0.03); padding: 8px 12px; border-radius: 8px; border-right: 2px solid var(--crimson);">
+              <b style="color: #fff;">قانون الانفجار الحرج:</b> عند وصول الإجهاد إلى 95% فما فوق، يتمزق التماسك وتنفصل الكتلتان بانفجار كوني هائل.
+            </div>
+            <div style="background: rgba(255,255,255,0.03); padding: 8px 12px; border-radius: 8px; border-right: 2px solid var(--violet);">
+              <b style="color: #fff;">قانون حفظ الطاقة:</b> أي طاقة تفقدها الدائرة تضيء فضاء الكون المحيط بلا نقصان.
+            </div>
+          </div>
+        </div>
+
+        <!-- القياسات الكونية الحية (Telemetry HUD) -->
+        <div class="panel-section telemetry">
+          <div class="telemetry-header">
+            <span>توزيع الطاقة الحية</span>
+            <span class="mono">UNITS</span>
+          </div>
+
+          <!-- صناديق مقارنة الين واليانج -->
+          <div class="energy-comparison">
+            <div class="energy-box yin">
+              <div class="energy-label">
+                <span class="dot yin-dot"></span>
+                <span>طاقة الين (Yin)</span>
+              </div>
+              <div id="inside-yin" class="energy-val">12.0</div>
+            </div>
+
+            <div class="energy-box yang">
+              <div class="energy-label">
+                <span class="dot yang-dot"></span>
+                <span>طاقة اليانج (Yang)</span>
+              </div>
+              <div id="inside-yang" class="energy-val">12.0</div>
+            </div>
+          </div>
+
+          <!-- قياس الطاقة المحفوظة في بيئة الكون -->
+          <div class="stat-row">
+            <span>طاقة الين في الفراغ الخارجي</span>
+            <b id="outside-yin">10.0</b>
+          </div>
+          <div class="stat-row">
+            <span>طاقة اليانج في الفراغ الخارجي</span>
+            <b id="outside-yang">10.0</b>
+          </div>
+
+          <!-- مؤشر الإجهاد والتحمل -->
+          <div class="strain-container">
+            <div class="strain-labels">
+              <span>إجهاد التماسك (Strain)</span>
+              <b id="strain-value">0%</b>
+            </div>
+            <div id="strain-meter" class="strain-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div id="strain-fill" class="strain-fill"></div>
+            </div>
+          </div>
+
+          <!-- سرعة الدوران -->
+          <div class="stat-row">
+            <span>سرعة دوران الدائرة</span>
+            <b id="spin-value">—</b>
+          </div>
+        </div>
+
+        <!-- المبدأ الفلسفي الأبدي والدورة الكبرى -->
+        <div class="philosophy">
+          <span class="philosophy-icon" aria-hidden="true">♾</span>
+          <p>
+            قانون الدورة الكونية الكبرى:<br>
+            <strong>«كما انبثقت الطاقة من الكون، تعود إليه عند الانهيار بلا نقصان.»</strong>
+          </p>
+        </div>
+      </aside>
+    </div>
+
+    <!-- تذييل الصفحة -->
+    <footer>
+      <span>تصوّر فني وحسابي فائق للأزلية والتناغم الكوني.</span>
+      <span>تجمّع ✦ اندماج ✦ دوران ✦ حفظ الطاقة ✦ مختبر تفاعلي مستقر</span>
+    </footer>
+  </main>
+
+  <!-- تضمين كود الجافاسكربت المعياري -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>

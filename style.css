@@ -93,3 +93,5 @@ body.contemplate .study { display: none; }
 @media (prefers-reduced-motion: reduce) {
   * { transition-duration: 0.01ms !important; }
 }
+
+ a.plain { text-decoration: none; display: inline-block; }
