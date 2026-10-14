@@ -1,86 +1,62 @@
-# build_standalone.py
-import re
+# build_standalone.py - bundle modules, styles and font subsets into one offline file
 import os
+import re
+import subprocess
+import sys
+import tempfile
 
-scratch_dir = os.path.dirname(os.path.abspath(__file__))
+HERE = os.path.dirname(os.path.abspath(__file__))
+MODULES = ['engine', 'tuning', 'hexagram', 'texts', 'journey', 'renderer', 'audio', 'app']
 
-def read_file(name):
-    with open(os.path.join(scratch_dir, name), 'r', encoding='utf-8') as f:
-        return f.read()
 
-css = read_file('style.css')
-engine = read_file('engine.js')
-audio = read_file('audio.js')
-motion = read_file('motion.js')
-renderer = read_file('renderer.js')
-app = read_file('app.js')
-index = read_file('index.html')
+def read(name):
+    with open(os.path.join(HERE, name), 'r', encoding='utf-8') as fh:
+        return fh.read()
 
-def clean_js(content):
-    # 1. Remove all import statements (single-line or multi-line)
-    content = re.sub(r'import\b[\s\S]*?;\s*', '', content)
-    
-    # 2. Remove export statements
-    content = re.sub(r'^\s*export\s+default\s+', '', content, flags=re.MULTILINE)
-    content = re.sub(r'^\s*export\s+(const|let|var|function|class)\s+', r'\1 ', content, flags=re.MULTILINE)
-    content = re.sub(r'^\s*export\s*\{[^}]*\};?\s*', '', content, flags=re.MULTILINE)
-    return content
 
-clean_engine = clean_js(engine)
-clean_audio = clean_js(audio)
-clean_motion = clean_js(motion)
-clean_renderer = clean_js(renderer)
-clean_app = clean_js(app)
+def strip_modules(src):
+    src = re.sub(r'^import\s[\s\S]*?;\s*$', '', src, flags=re.MULTILINE)
+    src = re.sub(r'^export\s+', '', src, flags=re.MULTILINE)
+    return src
 
-bundled_js = f"""(function() {{
-  'use strict';
 
-  // --- ENGINE ---
-{clean_engine}
+bundle = '(function () {\n\'use strict\';\n' + '\n'.join(
+    '// --- %s ---\n%s' % (m, strip_modules(read(m + '.js'))) for m in MODULES
+) + '\n})();\n'
 
-  // --- AUDIO ---
-{clean_audio}
+body = re.search(r'<body[^>]*>([\s\S]*?)</body>', read('index.html')).group(1)
+body = re.sub(r'<script\s+type="module"\s+src="app\.js"></script>', '', body)
 
-  // --- MOTION ---
-{clean_motion}
+css = read('fonts.css') + '\n' + read('style.css')
 
-  // --- RENDERER ---
-{clean_renderer}
-
-  // --- APP ---
-{clean_app}
-}})();"""
-
-# Extract body from index.html (excluding <script type="module" src="app.js"></script>)
-body_match = re.search(r'<body[^>]*>(.*?)</body>', index, re.DOTALL)
-if body_match:
-    body_content = body_match.group(1)
-    body_content = re.sub(r'<script\s+type="module"\s+src="app\.js"></script>', '', body_content)
-else:
-    raise RuntimeError("Could not find body in index.html")
-
-standalone_html = f"""<!doctype html>
+html = f'''<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#05070f">
-  <meta name="description" content="تجربة كونية بصرية وتفاعلية فائقة لتكوّن الين واليانج وحفظ الطاقة والتوازن في الوجود.">
-  <title>الوجود — التجربة الكونية الفائقة للين واليانج</title>
+  <meta name="theme-color" content="#0b0a09">
+  <meta name="description" content="رحلة تأمّلية في الين واليانج: من اللاقطب إلى العودة، مستندة إلى النصوص الكلاسيكية.">
+  <title>الين واليانج — رحلة</title>
   <style>
 {css}
   </style>
 </head>
 <body>
-{body_content}
+{body}
   <script>
-{bundled_js}
+{bundle}
   </script>
 </body>
 </html>
-"""
+'''
 
-with open(os.path.join(scratch_dir, 'standalone.html'), 'w', encoding='utf-8') as f:
-    f.write(standalone_html)
+with tempfile.NamedTemporaryFile('w', suffix='.js', delete=False, encoding='utf-8') as tmp:
+    tmp.write(bundle)
+check = subprocess.run(['node', '--check', tmp.name], capture_output=True, text=True)
+os.remove(tmp.name)
+if check.returncode != 0:
+    sys.exit('Bundle failed syntax check (duplicate top-level names?):\n' + check.stderr)
 
-print("standalone.html built successfully! Size:", len(standalone_html), "bytes")
+with open(os.path.join(HERE, 'standalone.html'), 'w', encoding='utf-8') as fh:
+    fh.write(html)
+print('standalone.html built, %d KB' % (len(html.encode('utf-8')) // 1024))

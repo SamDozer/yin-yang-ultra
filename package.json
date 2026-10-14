@@ -1,0 +1,9 @@
+{
+  "name": "yin-yang-ultra",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "check:quotes": "node tools/check-quotes.js"
+  }
+}
